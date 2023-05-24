@@ -1,0 +1,2799 @@
+How the Interview Started
+Michael Strong (005I9000000I3eC) started the flow interview.
+API Version for Running the Flow: 55
+Some of this flow's variables were set when the interview started.
+recordId = a00I90000013InzIAE
+GET RECORDS: Get Project
+Find all Project__c records where:
+Id Equals {!recordId} (a00I90000013InzIAE)
+Store the values of these fields in Get_Project: AQR_Submitted_in_last_30_Days__c, Lead_Organization__c, Id, End_Date__c, Start_Date__c, Name
+Result
+Successfully found records.
+GET RECORDS: Get Account
+Find all Account records where:
+Id Equals {!Get_Project.Lead_Organization__c} (0013h00000qdeSEAAY)
+Store the values of these fields in Get_Account: Id
+Result
+Successfully found records.
+DECISION: AQR Submitted in Last 30 Days
+Outcome executed: AQR_Submitted_in_Last_30_Days_check
+Outcome conditions:
+{!Get_Project.AQR_Submitted_in_last_30_Days__c} (true) Equals true
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: AQR Already Submitted
+Display Text: AQR_note
+Value at run time:
+
+Your project has already submitted a report in the last 30 Days. If you wish to revise an existing report please exit and contact: harmeet.toor@fsc-ccf.ca
+
+
+
+You can view your previous submissions by clicking My Projects > click on your project name > click Annual/Quarterly Report Submission in the boxes on the right hand side > your most recent Quarterly/Annual Report submissions will be here.
+
+
+
+Checkbox: I_would_still_like_to_submit
+Label: I would still like to submit. (You must check this box if clicking next)
+Value at run time: true
+
+Selected Navigation Button: NEXT
+DECISION: Marked Continue
+Outcome executed: Would_Still_Like_to_Submit
+Outcome conditions:
+{!I_would_still_like_to_submit} (true) Equals true
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Choose your reporting period
+Display Text: Headerreporting
+Value at run time:
+
+Reporting Period:
+
+
+
+Dropdown List: I_wish_to_submit_the_following_report
+Label: I wish to submit a report for the following period:
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Q4/Annual (ending March 31, 2023) (reportingperioudpicklist)
+Choice value: Q4/Annual (ending March 31, 2023)
+
+
+Display Text: tipsforasuccessfulsubmission
+Value at run time:
+
+
+Before You Begin:
+
+Please answer the questions below for some guidance on how to proceed with your submission.
+
+
+
+Display Text: Narrativeportion
+Value at run time:
+Activity Report
+
+Quarterly/Annual Activity Report Worksheet Link
+
+
+
+Radio Buttons: I_have_already_prepared_my_narrative_report_using_the_Quarterly_Annual_Activity
+Label: 1. I have already prepared a Quarterly/Annual Activity Report Worksheet and will copy paste my responses into this submission.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Display Text: financialreport
+Value at run time:
+Financial Report
+
+Quarterly Financial Report Template Link
+
+
+
+Radio Buttons: I_am_using_the_most_up_to_date_template
+Label: 2. I am using the most up to date Quarterly Financial Report template.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Radio Buttons: I_have_my_Quarterly_Annual_Financial_Report_Template_and_will_be_attaching_it_to
+Label: 3. I have prepared my Quarterly Financial Report and will be attaching it to this submission.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Display Text: Guidance
+Value at run time:
+
+
+Guidance based on the answers above:
+
+
+
+Display Text: yespreparedactivityreport
+Value at run time:
+1- Thank you for using the Quarterly/Annual Activity Report Worksheet!
+
+
+
+Display Text: warningaboutnarrative
+Value at run time:
+1- If you are ready to submit your Quarterly/Annual Activity Report, we recommend preparing your answers using the worksheet (linked above) first. This addresses a range of issues:
+
+REVIEW: You can review your answers without accidentally submitting a blank report.
+COLLABORATE: You can work collaboratively with others to prepare your answers as the portal does not allow multiple users to work on the same draft submission.
+BACKUP: You will not lose your work in the case of a technical error.
+SIGN-OFF: Your leader can review and sign off on the worksheet before you enter your answers.
+
+
+Display Text: yestemplate
+Value at run time:
+2 - Thank you for using the updated Quarterly Financial Report template! You will be able to upload this file in Section 6.
+
+
+
+Display Text: noupdatedfinancials
+Value at run time:
+2 - We recommend using the template linked above due to the improved functionality for both the project partner and FSC. Please share it with the team member(s) responsible for the financial component of your report.
+
+
+
+Display Text: nonarrativeyesfinancial
+Value at run time:
+3 - If your project has already submitted a recent Quarterly/Annual Activity Report without the Quarterly Financial Report, do not proceed. Please upload the Quarterly Financial Report to the Notes & Attachments section of the recently submitted Quarterly/Annual Report (found on the right side of your Project page).
+
+
+
+If you wish to submit your Quarterly Financial Report without a narrative report please send it via email to arshdeep.aulakh@fsc-ccf.ca.
+
+
+
+Display Text: yesnarrativenofinancial
+Value at run time:
+3 - Please enter your narrative information into the portal and press submit at the end. You will be able to add the financial component to the existing narrative report at a later date. This can be done by clicking on My Projects> Click Your Project Name>Click Annual/Quarterly Reports on the right> Click on the relevant report> Click "Upload Files" in the top right corner to add your financial report.
+
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: assignreportingperiod
+{!reportingperiodvar} Equals {!I_wish_to_submit_the_following_report}
+{!annualvar.Reporting_Period__c} Equals {!I_wish_to_submit_the_following_report}
+Result
+{!reportingperiodvar} = "Q4/Annual (ending March 31, 2023)"
+{!annualvar.Reporting_Period__c} = "Q4/Annual (ending March 31, 2023)"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: BACKGROUND AND OVERVIEW
+Display Text: DISPLAY18
+Value at run time:
+
+Background and Overview
+This report is for project partners to share the progress of their projects for the Q4/Annual (ending March 31, 2023) reporting period.
+
+
+
+Please detail how your work is evolving and what you are learning in this report. The template includes the following sections:
+
+Quarterly Objectives & Progress
+Quarterly Learnings and Achievements
+Quarterly Project Metrics
+Annual Objectives & Progress (only for the Q4/Annual reporting period)
+Annual Perception Scale & Project Metrics (only for the Q4/Annual reporting period)
+Quarterly Financial Report
+Other relevant information/material (Optional)
+The deadline for submitting the Q4/Annual (ending March 31, 2023) report is  Monday, May 1, 2023.
+
+
+
+Display Text: Projectnamedisplay
+Value at run time:
+Project Name: Test Project a New Test Project to Use whenever we're testing items in the porta
+
+
+
+Display Text: Leadorgnametext
+Value at run time:
+﻿Lead Organization Name: Future Skills Centre
+
+
+
+Display Text: Startdateenddatetext
+Value at run time:
+Project Period: -
+
+
+
+
+
+Textbox: First_Name
+Label: Project Lead - First Name
+Value at run time:
+
+Textbox: Last_Name
+Label: Project Lead - Last Name
+Value at run time:
+
+Lightning Component: Email
+Screen component: flowruntime:email
+Inputs:
+label = (Project Lead - Email)
+required = (true)
+Outputs:
+null
+
+Textbox: Project_Website
+Label: Project Website (if not already provided)
+Value at run time:
+
+Selected Navigation Button: PREVIOUS
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Choose your reporting period
+Display Text: Headerreporting
+Value at run time:
+
+Reporting Period:
+
+
+
+Dropdown List: I_wish_to_submit_the_following_report
+Label: I wish to submit a report for the following period:
+Data Type: Text
+Choices selected at runtime:
+None.
+
+Display Text: tipsforasuccessfulsubmission
+Value at run time:
+
+
+Before You Begin:
+
+Please answer the questions below for some guidance on how to proceed with your submission.
+
+
+
+Display Text: Narrativeportion
+Value at run time:
+Activity Report
+
+Quarterly/Annual Activity Report Worksheet Link
+
+
+
+Radio Buttons: I_have_already_prepared_my_narrative_report_using_the_Quarterly_Annual_Activity
+Label: 1. I have already prepared a Quarterly/Annual Activity Report Worksheet and will copy paste my responses into this submission.
+Data Type: Text
+Choices selected at runtime:
+None.
+
+Display Text: financialreport
+Value at run time:
+Financial Report
+
+Quarterly Financial Report Template Link
+
+
+
+Radio Buttons: I_am_using_the_most_up_to_date_template
+Label: 2. I am using the most up to date Quarterly Financial Report template.
+Data Type: Text
+Choices selected at runtime:
+None.
+
+Radio Buttons: I_have_my_Quarterly_Annual_Financial_Report_Template_and_will_be_attaching_it_to
+Label: 3. I have prepared my Quarterly Financial Report and will be attaching it to this submission.
+Data Type: Text
+Choices selected at runtime:
+None.
+
+Display Text: Guidance
+Value at run time:
+
+
+Guidance based on the answers above:
+
+
+
+Display Text: yespreparedactivityreport
+Value at run time:
+1- Thank you for using the Quarterly/Annual Activity Report Worksheet!
+
+
+
+Display Text: warningaboutnarrative
+Value at run time:
+1- If you are ready to submit your Quarterly/Annual Activity Report, we recommend preparing your answers using the worksheet (linked above) first. This addresses a range of issues:
+
+REVIEW: You can review your answers without accidentally submitting a blank report.
+COLLABORATE: You can work collaboratively with others to prepare your answers as the portal does not allow multiple users to work on the same draft submission.
+BACKUP: You will not lose your work in the case of a technical error.
+SIGN-OFF: Your leader can review and sign off on the worksheet before you enter your answers.
+
+
+Display Text: yestemplate
+Value at run time:
+2 - Thank you for using the updated Quarterly Financial Report template! You will be able to upload this file in Section 6.
+
+
+
+Display Text: noupdatedfinancials
+Value at run time:
+2 - We recommend using the template linked above due to the improved functionality for both the project partner and FSC. Please share it with the team member(s) responsible for the financial component of your report.
+
+
+
+Display Text: nonarrativeyesfinancial
+Value at run time:
+3 - If your project has already submitted a recent Quarterly/Annual Activity Report without the Quarterly Financial Report, do not proceed. Please upload the Quarterly Financial Report to the Notes & Attachments section of the recently submitted Quarterly/Annual Report (found on the right side of your Project page).
+
+
+
+If you wish to submit your Quarterly Financial Report without a narrative report please send it via email to arshdeep.aulakh@fsc-ccf.ca.
+
+
+
+Display Text: yesnarrativenofinancial
+Value at run time:
+3 - Please enter your narrative information into the portal and press submit at the end. You will be able to add the financial component to the existing narrative report at a later date. This can be done by clicking on My Projects> Click Your Project Name>Click Annual/Quarterly Reports on the right> Click on the relevant report> Click "Upload Files" in the top right corner to add your financial report.
+
+
+
+Selected Navigation Button: PREVIOUS
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: AQR Already Submitted
+Display Text: AQR_note
+Value at run time:
+
+Your project has already submitted a report in the last 30 Days. If you wish to revise an existing report please exit and contact: harmeet.toor@fsc-ccf.ca
+
+
+
+You can view your previous submissions by clicking My Projects > click on your project name > click Annual/Quarterly Report Submission in the boxes on the right hand side > your most recent Quarterly/Annual Report submissions will be here.
+
+
+
+Checkbox: I_would_still_like_to_submit
+Label: I would still like to submit. (You must check this box if clicking next)
+Value at run time: true
+
+Selected Navigation Button: NEXT
+DECISION: Marked Continue
+Outcome executed: Would_Still_Like_to_Submit
+Outcome conditions:
+{!I_would_still_like_to_submit} (true) Equals true
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Choose your reporting period
+Display Text: Headerreporting
+Value at run time:
+
+Reporting Period:
+
+
+
+Dropdown List: I_wish_to_submit_the_following_report
+Label: I wish to submit a report for the following period:
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Q4/Annual (ending March 31, 2023) (reportingperioudpicklist)
+Choice value: Q4/Annual (ending March 31, 2023)
+
+
+Display Text: tipsforasuccessfulsubmission
+Value at run time:
+
+
+Before You Begin:
+
+Please answer the questions below for some guidance on how to proceed with your submission.
+
+
+
+Display Text: Narrativeportion
+Value at run time:
+Activity Report
+
+Quarterly/Annual Activity Report Worksheet Link
+
+
+
+Radio Buttons: I_have_already_prepared_my_narrative_report_using_the_Quarterly_Annual_Activity
+Label: 1. I have already prepared a Quarterly/Annual Activity Report Worksheet and will copy paste my responses into this submission.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Display Text: financialreport
+Value at run time:
+Financial Report
+
+Quarterly Financial Report Template Link
+
+
+
+Radio Buttons: I_am_using_the_most_up_to_date_template
+Label: 2. I am using the most up to date Quarterly Financial Report template.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Radio Buttons: I_have_my_Quarterly_Annual_Financial_Report_Template_and_will_be_attaching_it_to
+Label: 3. I have prepared my Quarterly Financial Report and will be attaching it to this submission.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Display Text: Guidance
+Value at run time:
+
+
+Guidance based on the answers above:
+
+
+
+Display Text: yespreparedactivityreport
+Value at run time:
+1- Thank you for using the Quarterly/Annual Activity Report Worksheet!
+
+
+
+Display Text: warningaboutnarrative
+Value at run time:
+1- If you are ready to submit your Quarterly/Annual Activity Report, we recommend preparing your answers using the worksheet (linked above) first. This addresses a range of issues:
+
+REVIEW: You can review your answers without accidentally submitting a blank report.
+COLLABORATE: You can work collaboratively with others to prepare your answers as the portal does not allow multiple users to work on the same draft submission.
+BACKUP: You will not lose your work in the case of a technical error.
+SIGN-OFF: Your leader can review and sign off on the worksheet before you enter your answers.
+
+
+Display Text: yestemplate
+Value at run time:
+2 - Thank you for using the updated Quarterly Financial Report template! You will be able to upload this file in Section 6.
+
+
+
+Display Text: noupdatedfinancials
+Value at run time:
+2 - We recommend using the template linked above due to the improved functionality for both the project partner and FSC. Please share it with the team member(s) responsible for the financial component of your report.
+
+
+
+Display Text: nonarrativeyesfinancial
+Value at run time:
+3 - If your project has already submitted a recent Quarterly/Annual Activity Report without the Quarterly Financial Report, do not proceed. Please upload the Quarterly Financial Report to the Notes & Attachments section of the recently submitted Quarterly/Annual Report (found on the right side of your Project page).
+
+
+
+If you wish to submit your Quarterly Financial Report without a narrative report please send it via email to arshdeep.aulakh@fsc-ccf.ca.
+
+
+
+Display Text: yesnarrativenofinancial
+Value at run time:
+3 - Please enter your narrative information into the portal and press submit at the end. You will be able to add the financial component to the existing narrative report at a later date. This can be done by clicking on My Projects> Click Your Project Name>Click Annual/Quarterly Reports on the right> Click on the relevant report> Click "Upload Files" in the top right corner to add your financial report.
+
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: assignreportingperiod
+{!reportingperiodvar} Equals {!I_wish_to_submit_the_following_report}
+{!annualvar.Reporting_Period__c} Equals {!I_wish_to_submit_the_following_report}
+Result
+{!reportingperiodvar} = "Q4/Annual (ending March 31, 2023)"
+{!annualvar.Reporting_Period__c} = "Q4/Annual (ending March 31, 2023)"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: BACKGROUND AND OVERVIEW
+Display Text: DISPLAY18
+Value at run time:
+
+Background and Overview
+This report is for project partners to share the progress of their projects for the Q4/Annual (ending March 31, 2023) reporting period.
+
+
+
+Please detail how your work is evolving and what you are learning in this report. The template includes the following sections:
+
+Quarterly Objectives & Progress
+Quarterly Learnings and Achievements
+Quarterly Project Metrics
+Annual Objectives & Progress (only for the Q4/Annual reporting period)
+Annual Perception Scale & Project Metrics (only for the Q4/Annual reporting period)
+Quarterly Financial Report
+Other relevant information/material (Optional)
+The deadline for submitting the Q4/Annual (ending March 31, 2023) report is  Monday, May 1, 2023.
+
+
+
+Display Text: Projectnamedisplay
+Value at run time:
+Project Name: Test Project a New Test Project to Use whenever we're testing items in the porta
+
+
+
+Display Text: Leadorgnametext
+Value at run time:
+﻿Lead Organization Name: Future Skills Centre
+
+
+
+Display Text: Startdateenddatetext
+Value at run time:
+Project Period: -
+
+
+
+
+
+Textbox: First_Name
+Label: Project Lead - First Name
+Value at run time: test
+
+Textbox: Last_Name
+Label: Project Lead - Last Name
+Value at run time: test
+
+Lightning Component: Email
+Screen component: flowruntime:email
+Inputs:
+label = (Project Lead - Email)
+required = (true)
+Outputs:
+disabled = false
+label = Project Lead - Email
+placeholder = you@example.com
+readonly = false
+required = true
+value = test@mail.com
+
+Textbox: Project_Website
+Label: Project Website (if not already provided)
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign background and ect
+{!annualvar.Project_Start_Date__c} Equals {!Get_Project.Start_Date__c}
+{!annualvar.Project_Ends_Date__c} Equals {!Get_Project.End_Date__c}
+{!annualvar.Project_Lead_Name__c} Equals {!Name}
+{!annualvar.Email__c} Equals {!Email.value}
+{!annualvar.Website__c} Equals {!Project_Website}
+{!annualvar.Lead_Organization__c} Equals {!Get_Project.Lead_Organization__r.Name}
+Result
+{!annualvar.Project_Lead_Name__c} = "test test"
+{!annualvar.Email__c} = "test@mail.com"
+{!annualvar.Website__c} = "test"
+{!annualvar.Project_Start_Date__c} = "null"
+{!annualvar.Project_Ends_Date__c} = "null"
+{!annualvar.Lead_Organization__c} = "Future Skills Centre"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: PREAMBLEIT
+Display Text: DISPLAYIT23
+Value at run time:
+
+Section 1: Quarterly Objectives & Progress
+
+
+
+Dropdown List: How_do_you_feel_about_the_progress_of_your_project_during_this_quarterly_reporti
+Label: How do you feel about the progress of your project during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Ahead of plan (ProjectProgress)
+Choice value: Ahead of plan
+
+
+Display Text: displayit24
+Value at run time:
+Please take a moment to revisit your overall project objectives and reflect on how they have evolved over this quarterly reporting period. As an innovation-driven organization, FSC encourages projects to revisit their objectives regularly, revise them as needed, and share learnings from both success and failure.
+
+
+
+Long Text Area: Objective_Reflection
+Label: Objective Reflection
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Objective to Record
+{!Var_objective.Name} Equals Objective
+{!Var_objective.Objective__c} Equals {!Objective_Reflection}
+Result
+{!Var_objective.Objective__c} = "test"
+{!Var_objective.Name} = "Objective"
+ASSIGNMENT: Add Objective Var to Collection
+{!var_objectivecollection} Add {!Var_objective}
+Result
+{!var_objectivecollection} = "[Objective_for_Reporting__c (No ID)]"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: projectprogress
+Display Text: Section1continued
+Value at run time:
+
+Section 1: Quarterly Objectives & Progress (continued)
+
+
+
+Long Text Area: typeofrequiredsupportlong
+Label: If you are off track and require support, please provide some information on the challenge(s) you are facing and the kind of support you require.
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: progressassignments
+{!Var_objective.How_do_you_feel_about_progress__c} Equals {!How_do_you_feel_about_the_progress_of_your_project_during_this_quarterly_reporti}
+{!Var_objective.If_you_are_off_track_what_do_you_need__c} Equals {!typeofrequiredsupportlong}
+Result
+{!Var_objective.If_you_are_off_track_what_do_you_need__c} = "test"
+{!Var_objective.How_do_you_feel_about_progress__c} = "Ahead of plan"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Project Learnings
+Display Text: DISPLAY2
+Value at run time:
+
+Section 2: Quarterly Project Learnings & Achievements
+
+
+Long Text Area: What_have_you_learned_over_the_past_quarter_when_trying_to_accomplish_these_obje
+Label: What have you learned over the past quarter when trying to accomplish these objectives? What is working well and what isn’t?
+Value at run time: test
+
+Long Text Area: What_advice_would_you_give_other_FSC_funded_project_teams_who_have_similar_objec
+Label: What advice would you give other FSC funded project teams who have similar objectives and are just starting their work?
+Value at run time: test
+
+Long Text Area: Proudscheivment
+Label: What achievement(s) from the past quarter are you most proud of?
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Project Learning
+{!annualvar.What_have_you_learned_over_the_past_quar__c} Equals {!What_have_you_learned_over_the_past_quarter_when_trying_to_accomplish_these_obje}
+{!annualvar.What_advice_would_you_give_other_FSC_fun__c} Equals {!What_advice_would_you_give_other_FSC_funded_project_teams_who_have_similar_objec}
+Result
+{!annualvar.What_advice_would_you_give_other_FSC_fun__c} = "test"
+{!annualvar.What_have_you_learned_over_the_past_quar__c} = "test"
+ASSIGNMENT: Achievements and Challenges
+{!annualvar.What_achievement_s_from_the_past_quarte__c} Equals {!Proudscheivment}
+Result
+{!annualvar.What_achievement_s_from_the_past_quarte__c} = "test"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Project Participants
+Display Text: section3display
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+
+
+Display Text: DISPALY5
+Value at run time:
+In this section, we ask you to provide quantitative outputs and performance indicators about your project for this quarterly reporting period. If you do not have this information at this phase of your project, or it is not applicable to your initiative, please check “Not Applicable” to the questions below where indicated.
+
+
+
+Display Text: DISPALY4
+Value at run time:
+Section 3.1: Project Participants
+
+
+Radio Buttons: Did_you_enroll_any_new_participants_i_e_survey_respondents_focus_group_particip
+Label: Did you enroll any new participants (i.e. survey respondents, focus group participants) in your project during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: New Project Participants
+Outcome executed: Yes_Participant
+Outcome conditions:
+{!Did_you_enroll_any_new_participants_i_e_survey_respondents_focus_group_particip} (Yes) Contains yes
+All conditions must be true (AND)
+ASSIGNMENT: No/NA Participants
+{!Var_participants.Did_you_enroll_any_new_participants__c} Equals {!Did_you_enroll_any_new_participants_i_e_survey_respondents_focus_group_particip}
+{!annualvar.Did_you_enroll_any_new_participants__c} Equals {!Did_you_enroll_any_new_participants_i_e_survey_respondents_focus_group_particip}
+Result
+{!annualvar.Did_you_enroll_any_new_participants__c} = "Yes"
+{!Var_participants.Did_you_enroll_any_new_participants__c} = "Yes"
+ASSIGNMENT: No/NA Participants
+{!Var_participants.Did_you_enroll_any_new_participants__c} Equals {!Did_you_enroll_any_new_participants_i_e_survey_respondents_focus_group_particip}
+Result
+{!Var_participants.Did_you_enroll_any_new_participants__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Project Participant
+Display Text: displaysection31
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.1: Project Participants (Continued)
+
+
+Display Text: DISPLAY6
+Value at run time:
+New Project Participants
+Did you enroll any new participants in your project during this quarterly reporting period? Please list them by geographical region below, as well as how many you were originally expecting to enroll.
+
+
+
+You will be prompted to add the information for one location at a time.
+
+
+
+Dropdown List: Locationpicklist
+Label: Location
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Manitoba (Locationprojectpartners)
+Choice value: Manitoba
+
+
+Number: Actual_Number_of_ParticipantsNUM
+Label: Actual Number of Participants
+Value at run time: 3
+
+Number: Original_Estimated_Number_of_ParticipantNUM
+Label: Original Estimated Number of Participants
+Value at run time: 4
+
+Radio Buttons: Add_participants
+Label: Did you enroll participants in another province or territory during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Participants to Record
+{!Var_participants.Actual_Number_of_Participants__c} Equals {!Actual_Number_of_ParticipantsNUM}
+{!Var_participants.Locationpicklist__c} Equals {!Locationprojectpartners}
+{!Var_participants.Original_Estimated_Number_of_Participant__c} Equals {!Original_Estimated_Number_of_ParticipantNUM}
+Result
+{!Var_participants.Locationpicklist__c} = "Manitoba"
+{!Var_participants.Original_Estimated_Number_of_Participant__c} = "4"
+{!Var_participants.Actual_Number_of_Participants__c} = "3"
+ASSIGNMENT: Assign Participant collection
+{!Var_participantcollection} Add {!Var_participants}
+Result
+{!Var_participantcollection} = "[Participants__c (No ID)]"
+DECISION: Additional Participant
+Outcome executed: yes_additional
+Outcome conditions:
+{!Add_participants} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Project Participant
+Display Text: displaysection31
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.1: Project Participants (Continued)
+
+
+Display Text: DISPLAY6
+Value at run time:
+New Project Participants
+Did you enroll any new participants in your project during this quarterly reporting period? Please list them by geographical region below, as well as how many you were originally expecting to enroll.
+
+
+
+You will be prompted to add the information for one location at a time.
+
+
+
+Dropdown List: Locationpicklist
+Label: Location
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: British Columbia (Locationprojectpartners)
+Choice value: British Columbia
+
+
+Number: Actual_Number_of_ParticipantsNUM
+Label: Actual Number of Participants
+Value at run time: 5
+
+Number: Original_Estimated_Number_of_ParticipantNUM
+Label: Original Estimated Number of Participants
+Value at run time: 6
+
+Radio Buttons: Add_participants
+Label: Did you enroll participants in another province or territory during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Participants to Record
+{!Var_participants.Actual_Number_of_Participants__c} Equals {!Actual_Number_of_ParticipantsNUM}
+{!Var_participants.Locationpicklist__c} Equals {!Locationprojectpartners}
+{!Var_participants.Original_Estimated_Number_of_Participant__c} Equals {!Original_Estimated_Number_of_ParticipantNUM}
+Result
+{!Var_participants.Locationpicklist__c} = "British Columbia"
+{!Var_participants.Original_Estimated_Number_of_Participant__c} = "6"
+{!Var_participants.Actual_Number_of_Participants__c} = "5"
+ASSIGNMENT: Assign Participant collection
+{!Var_participantcollection} Add {!Var_participants}
+Result
+{!Var_participantcollection} = "[Participants__c (No ID),Participants__c (No ID)]"
+DECISION: Additional Participant
+Skipped this outcome because its conditions weren't met: yes_additional
+Outcome conditions:
+{!Add_participants} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Organizations
+Display Text: neworgtext
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.1: Project Participants (continued)
+
+
+New Organizations as Project Participants
+
+
+
+Radio Buttons: Did_you_enroll_any_new_organization_as_participants_in_your_project_during_the
+Label: Did you enroll any new organization(s) as participants in your project during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: New Organizations
+Outcome executed: yes_organization
+Outcome conditions:
+{!Did_you_enroll_any_new_organization_as_participants_in_your_project_during_the} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+ASSIGNMENT: assignneworganswertoaqrub
+{!annualvar.Did_you_enroll_any_new_organization_s__c} Equals {!Did_you_enroll_any_new_organization_as_participants_in_your_project_during_the}
+Result
+{!annualvar.Did_you_enroll_any_new_organization_s__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Orgs Added
+Display Text: DISPLAY8
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.1: Project Participants (continued)
+
+
+New Organizations as Project Participants
+Did you enroll any new organizations as participants in your project during this quarterly reporting period? Please list them all and provide a description of how the organizations are engaged in your project.
+
+
+
+You will be prompted to add one organization at a time.
+
+
+
+Dropdown List: Locationpicks
+Label: Location
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: New Brunswick (Locationprojectpartners)
+Choice value: New Brunswick
+
+
+Textbox: Organizations_Name
+Label: Organization Name
+Value at run time: test
+
+Long Text Area: Description_of_how_the_organization_engaging
+Label: Description of this organization's engagement with your project
+Value at run time: test
+
+Radio Buttons: Add_Organization
+Label: Would you like to add another organization for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Organization record
+{!Var_organizations.Description_of_how_the_organization_is_e__c} Equals {!Description_of_how_the_organization_engaging}
+{!Var_organizations.Organization_Name__c} Equals {!Organizations_Name}
+{!Var_organizations.Location__c} Equals {!Locationpicks}
+Result
+{!Var_organizations.Location__c} = "New Brunswick"
+{!Var_organizations.Description_of_how_the_organization_is_e__c} = "test"
+{!Var_organizations.Organization_Name__c} = "test"
+ASSIGNMENT: Assign Org Collections
+{!var_organizationcollections} Add {!Var_organizations}
+Result
+{!var_organizationcollections} = "[Organization__c (No ID)]"
+DECISION: Another organization
+Outcome executed: yes_anotherorg
+Outcome conditions:
+{!Add_Organization} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Orgs Added
+Display Text: DISPLAY8
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.1: Project Participants (continued)
+
+
+New Organizations as Project Participants
+Did you enroll any new organizations as participants in your project during this quarterly reporting period? Please list them all and provide a description of how the organizations are engaged in your project.
+
+
+
+You will be prompted to add one organization at a time.
+
+
+
+Dropdown List: Locationpicks
+Label: Location
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: British Columbia (Locationprojectpartners)
+Choice value: British Columbia
+
+
+Textbox: Organizations_Name
+Label: Organization Name
+Value at run time: test
+
+Long Text Area: Description_of_how_the_organization_engaging
+Label: Description of this organization's engagement with your project
+Value at run time: test
+
+Radio Buttons: Add_Organization
+Label: Would you like to add another organization for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Organization record
+{!Var_organizations.Description_of_how_the_organization_is_e__c} Equals {!Description_of_how_the_organization_engaging}
+{!Var_organizations.Organization_Name__c} Equals {!Organizations_Name}
+{!Var_organizations.Location__c} Equals {!Locationpicks}
+Result
+{!Var_organizations.Location__c} = "British Columbia"
+{!Var_organizations.Description_of_how_the_organization_is_e__c} = "test"
+{!Var_organizations.Organization_Name__c} = "test"
+ASSIGNMENT: Assign Org Collections
+{!var_organizationcollections} Add {!Var_organizations}
+Result
+{!var_organizationcollections} = "[Organization__c (No ID),Organization__c (No ID)]"
+DECISION: Another organization
+Skipped this outcome because its conditions weren't met: yes_anotherorg
+Outcome conditions:
+{!Add_Organization} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Training Participants
+Display Text: DISPLAY9
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+
+
+
+Section 3.2: Training Types
+
+
+
+Radio Buttons: Have_you_engaged_in_any_training_to_date
+Label: Have you conducted any training during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: Training Participants
+Outcome executed: yes_participanttraining
+Outcome conditions:
+{!Have_you_engaged_in_any_training_to_date} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+ASSIGNMENT: assigntrainngtoaqrs
+{!annualvar.Have_you_engaged_in_any_training_to_date__c} Equals {!Have_you_engaged_in_any_training_to_date}
+Result
+{!annualvar.Have_you_engaged_in_any_training_to_date__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Participants by Training Type
+Display Text: DISPLAY10
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.2: Training Types (continued)
+
+New Participants, by Training Type
+During this quarterly reporting period, how many new participants enrolled in the following types of training? If your training type is not listed, please add your own.
+
+
+
+You will be prompted to add one training at a time.
+
+
+
+Dropdown List: trainingtypespicklist
+Label: Training Type
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Online (trainingtypes)
+Choice value: Online
+
+
+Textbox: traintypeother
+Label: If other training type, please specify
+Value at run time: test
+
+Long Text Area: Description_of_Training
+Label: Description of Training
+Value at run time: teset
+
+Number: Actual_Number_of_Training_Participants
+Label: Actual Number of Training Participants
+Value at run time: 4
+
+Radio Buttons: Do_you_have_more_participant_training
+Label: Did you have new participants enroll in a different type of training during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Training Participants assign to record
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} Equals {!Actual_Number_of_Training_Participants}
+{!var_trainingparticipants.Description_of_Training__c} Equals {!Description_of_Training}
+{!var_trainingparticipants.Training_Typepicklsit__c} Equals {!trainingtypes}
+{!var_trainingparticipants.Training_Type__c} Equals {!traintypeother}
+Result
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} = "4"
+{!var_trainingparticipants.Training_Typepicklsit__c} = "Online"
+{!var_trainingparticipants.Description_of_Training__c} = "teset"
+{!var_trainingparticipants.Training_Type__c} = "test"
+ASSIGNMENT: Training Type Collection Assign
+{!var_trainingparticipantscollections} Add {!var_trainingparticipants}
+Result
+{!var_trainingparticipantscollections} = "[Training__c (No ID)]"
+DECISION: Additional Participant Training
+Outcome executed: yes_participanttrainings
+Outcome conditions:
+{!Do_you_have_more_participant_training} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New Participants by Training Type
+Display Text: DISPLAY10
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.2: Training Types (continued)
+
+New Participants, by Training Type
+During this quarterly reporting period, how many new participants enrolled in the following types of training? If your training type is not listed, please add your own.
+
+
+
+You will be prompted to add one training at a time.
+
+
+
+Dropdown List: trainingtypespicklist
+Label: Training Type
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Hybrid/ blended virtual and in-person (trainingtypes)
+Choice value: Hybrid/ blended virtual and in-person
+
+
+Textbox: traintypeother
+Label: If other training type, please specify
+Value at run time: test
+
+Long Text Area: Description_of_Training
+Label: Description of Training
+Value at run time: test
+
+Number: Actual_Number_of_Training_Participants
+Label: Actual Number of Training Participants
+Value at run time: 4
+
+Radio Buttons: Do_you_have_more_participant_training
+Label: Did you have new participants enroll in a different type of training during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Training Participants assign to record
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} Equals {!Actual_Number_of_Training_Participants}
+{!var_trainingparticipants.Description_of_Training__c} Equals {!Description_of_Training}
+{!var_trainingparticipants.Training_Typepicklsit__c} Equals {!trainingtypes}
+{!var_trainingparticipants.Training_Type__c} Equals {!traintypeother}
+Result
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} = "4"
+{!var_trainingparticipants.Training_Typepicklsit__c} = "Hybrid/ blended virtual and in-person"
+{!var_trainingparticipants.Description_of_Training__c} = "test"
+{!var_trainingparticipants.Training_Type__c} = "test"
+ASSIGNMENT: Training Type Collection Assign
+{!var_trainingparticipantscollections} Add {!var_trainingparticipants}
+Result
+{!var_trainingparticipantscollections} = "[Training__c (No ID),Training__c (No ID)]"
+DECISION: Additional Participant Training
+Skipped this outcome because its conditions weren't met: yes_participanttrainings
+Outcome conditions:
+{!Do_you_have_more_participant_training} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Do you have organization training?
+Display Text: displayneworg
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.2: Training Types (continued)
+
+
+New Organizations, by Training Type
+
+
+
+Radio Buttons: Do_you_have_organization_trainings
+Label: Did you train any organizations during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: Organization training type
+Outcome executed: yes_organizationtraining
+Outcome conditions:
+{!Do_you_have_organization_trainings} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+ASSIGNMENT: assignorgtainigtoaqrs
+{!annualvar.Did_you_train_any_organizations_during_t__c} Equals {!Do_you_have_organization_trainings}
+Result
+{!annualvar.Did_you_train_any_organizations_during_t__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New training by organization
+Display Text: DISPLAY12
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.2: Training Types (continued)
+
+New Organizations, by Training Type
+During the quarterly reporting period, please indicate any new organization(s) enrolled as participants in the following types of training? If your training type is not listed, please add your own.
+
+
+
+Dropdown List: Training_Typepicks
+Label: Training Type
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Classroom/In-person (trainingtypes)
+Choice value: Classroom/In-person
+
+
+Textbox: If_other_training_type_please_specify
+Label: If other training type, please specify
+Value at run time: test
+
+Textbox: Organization_Name_forTraining
+Label: Organization Name
+Value at run time: test
+
+Long Text Area: Description_of_Training_organization
+Label: Description of Training
+Value at run time: test
+
+Radio Buttons: Another_Organization_Training
+Label: Did you have new organizations enroll in a different type of training during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Training Org Assign
+{!var_trainingorganization.Description_of_Training__c} Equals {!Description_of_Training_organization}
+{!var_trainingorganization.Organization_Name__c} Equals {!Organizations_Name}
+{!var_trainingorganization.Training_Typepicks__c} Equals {!trainingtypes}
+{!var_trainingorganization.Training_Type__c} Equals {!traintypeother}
+Result
+{!var_trainingorganization.Training_Typepicks__c} = "Classroom/In-person"
+{!var_trainingorganization.Training_Type__c} = "test"
+{!var_trainingorganization.Organization_Name__c} = "test"
+{!var_trainingorganization.Description_of_Training__c} = "test"
+ASSIGNMENT: Training Org - Collections
+{!var_organizationtrainingcollections} Add {!var_trainingorganization}
+Result
+{!var_organizationtrainingcollections} = "[Organization_Training__c (No ID)]"
+DECISION: Additional Org Training
+Outcome executed: yes_addorgtraining
+Outcome conditions:
+{!Another_Organization_Training} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: New training by organization
+Display Text: DISPLAY12
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.2: Training Types (continued)
+
+New Organizations, by Training Type
+During the quarterly reporting period, please indicate any new organization(s) enrolled as participants in the following types of training? If your training type is not listed, please add your own.
+
+
+
+Dropdown List: Training_Typepicks
+Label: Training Type
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: If other, please specify below (trainingtypes)
+Choice value: If other, please specify below
+
+
+Textbox: If_other_training_type_please_specify
+Label: If other training type, please specify
+Value at run time: test
+
+Textbox: Organization_Name_forTraining
+Label: Organization Name
+Value at run time: test
+
+Long Text Area: Description_of_Training_organization
+Label: Description of Training
+Value at run time: test
+
+Radio Buttons: Another_Organization_Training
+Label: Did you have new organizations enroll in a different type of training during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Training Org Assign
+{!var_trainingorganization.Description_of_Training__c} Equals {!Description_of_Training_organization}
+{!var_trainingorganization.Organization_Name__c} Equals {!Organizations_Name}
+{!var_trainingorganization.Training_Typepicks__c} Equals {!trainingtypes}
+{!var_trainingorganization.Training_Type__c} Equals {!traintypeother}
+Result
+{!var_trainingorganization.Training_Typepicks__c} = "If other, please specify below"
+{!var_trainingorganization.Training_Type__c} = "test"
+{!var_trainingorganization.Organization_Name__c} = "test"
+{!var_trainingorganization.Description_of_Training__c} = "test"
+ASSIGNMENT: Training Org - Collections
+{!var_organizationtrainingcollections} Add {!var_trainingorganization}
+Result
+{!var_organizationtrainingcollections} = "[Organization_Training__c (No ID),Organization_Training__c (No ID)]"
+DECISION: Additional Org Training
+Skipped this outcome because its conditions weren't met: yes_addorgtraining
+Outcome conditions:
+{!Another_Organization_Training} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Do you have equity seeking participants?
+Display Text: displayeqtyseeking
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+
+
+
+Section 3.3: New Equity-Seeking Participants
+
+
+
+Radio Buttons: Do_you_have_Equity_Seeking_participants
+Label: Did you engage new equity-seeking participants in your project during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: equity seeking
+Outcome executed: yes_equityseeking
+Outcome conditions:
+{!Do_you_have_Equity_Seeking_participants} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+ASSIGNMENT: assignquityseekerstoaqrs
+{!annualvar.did_you_engage_new_equity_seeking_partic__c} Equals {!Do_you_have_Equity_Seeking_participants}
+Result
+{!annualvar.did_you_engage_new_equity_seeking_partic__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Equity seeking Participants
+Display Text: eqtydesc
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.3: New Equity-Seeking Participants (continued)
+
+New Equity-Seeking Participants
+From the drop-down list below, please select all the equity-seeking groups of participants you have engaged during this quarterly reporting period, describe how they are participating and, if available, a numerical breakdown by equity-seeking group. If the equity-seeking group is not listed, please add your own.
+
+
+
+Dropdown List: Equity_Seeking_Group1
+Label: Equity-Seeking Group
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Indigenous Persons (equityseekinggroup)
+Choice value: Indigenous Persons
+
+
+Number: Number_of_Equity_Seeking_ParticipantsNUM
+Label: Number of Participants from this Equity-Seeking Group
+Value at run time: 3
+
+Long Text Area: Description_of_how_the_equity_seeking_group_is_participating
+Label: Description of how this equity-seeking group is participating in your project.
+Value at run time: test
+
+Long Text Area: Description_of_Equity_Seeking_Group
+Label: Description if any participants in this equity-seeking group reported improvement in decision-making on current and emerging in-demand skills, please provide a narrative describing their experience.
+Value at run time: test
+
+Radio Buttons: Additional_Equity_Seeking_Groups
+Label: Do you want to add another equity-seeking group for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Equity seeking groups
+{!var_equityseeking.Description_if__c} Equals {!Description_of_Equity_Seeking_Group}
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} Equals {!Number_of_Equity_Seeking_ParticipantsNUM}
+{!var_equityseeking.Equity_seeking_Group__c} Equals {!equityseekinggroup}
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} Equals {!Description_of_how_the_equity_seeking_group_is_participating}
+Result
+{!var_equityseeking.Description_if__c} = "test"
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} = "test"
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} = "3"
+{!var_equityseeking.Equity_seeking_Group__c} = "Indigenous Persons"
+ASSIGNMENT: equityseeking - Collections
+{!var_equityseekingcollection} Add {!var_equityseeking}
+Result
+{!var_equityseekingcollection} = "[Equity_Seeking_Participants__c (No ID)]"
+DECISION: Equity Seeking Addtional
+Outcome executed: yes_addeqtyseeking_0
+Outcome conditions:
+{!Additional_Equity_Seeking_Groups} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Equity seeking Participants
+Display Text: eqtydesc
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.3: New Equity-Seeking Participants (continued)
+
+New Equity-Seeking Participants
+From the drop-down list below, please select all the equity-seeking groups of participants you have engaged during this quarterly reporting period, describe how they are participating and, if available, a numerical breakdown by equity-seeking group. If the equity-seeking group is not listed, please add your own.
+
+
+
+Dropdown List: Equity_Seeking_Group1
+Label: Equity-Seeking Group
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Newcomers (arrived in Canada in last 5 years) (equityseekinggroup)
+Choice value: Newcomers (arrived in Canada in last 5 years)
+
+
+Number: Number_of_Equity_Seeking_ParticipantsNUM
+Label: Number of Participants from this Equity-Seeking Group
+Value at run time: 6
+
+Long Text Area: Description_of_how_the_equity_seeking_group_is_participating
+Label: Description of how this equity-seeking group is participating in your project.
+Value at run time: test
+
+Long Text Area: Description_of_Equity_Seeking_Group
+Label: Description if any participants in this equity-seeking group reported improvement in decision-making on current and emerging in-demand skills, please provide a narrative describing their experience.
+Value at run time: test
+
+Radio Buttons: Additional_Equity_Seeking_Groups
+Label: Do you want to add another equity-seeking group for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Equity seeking groups
+{!var_equityseeking.Description_if__c} Equals {!Description_of_Equity_Seeking_Group}
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} Equals {!Number_of_Equity_Seeking_ParticipantsNUM}
+{!var_equityseeking.Equity_seeking_Group__c} Equals {!equityseekinggroup}
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} Equals {!Description_of_how_the_equity_seeking_group_is_participating}
+Result
+{!var_equityseeking.Description_if__c} = "test"
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} = "test"
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} = "6"
+{!var_equityseeking.Equity_seeking_Group__c} = "Newcomers (arrived in Canada in last 5 years)"
+ASSIGNMENT: equityseeking - Collections
+{!var_equityseekingcollection} Add {!var_equityseeking}
+Result
+{!var_equityseekingcollection} = "[Equity_Seeking_Participants__c (No ID),Equity_Seeking_Participants__c (No ID)]"
+DECISION: Equity Seeking Addtional
+Skipped this outcome because its conditions weren't met: yes_addeqtyseeking_0
+Outcome conditions:
+{!Additional_Equity_Seeking_Groups} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Knowledge Mobilization
+Display Text: DISPALY14
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.4: Knowledge Mobilization 
+
+
+Radio Buttons: Have_you_completed_any_knowledge_mobilization_activities_during_the_reporting_pe
+Label: Have you completed any knowledge mobilization activities during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: Knowledge Mobilization
+Outcome executed: yes_knowledgemobilized
+Outcome conditions:
+{!Have_you_completed_any_knowledge_mobilization_activities_during_the_reporting_pe} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+ASSIGNMENT: assignknowmobitoaqrs
+{!annualvar.Have_you_completed_any_knowledge_mobiliz__c} Equals {!Have_you_completed_any_knowledge_mobilization_activities_during_the_reporting_pe}
+Result
+{!annualvar.Have_you_completed_any_knowledge_mobiliz__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Please indicate the number of knowledge mobilization activities (by type) and community of practice efforts you have undertaken during the reporting period. If your activities are not listed, please add your own type of knowledge mobilization activity.
+Display Text: DISPLAY15
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.4: Knowledge Mobilization (continued)
+
+
+Knowledge Mobilization
+
+
+
+Please indicate the number of knowledge mobilization activities (by type) and community of practice efforts you have undertaken during this quarterly reporting period. If your activities are not listed, please add your own type of knowledge mobilization activity.
+
+
+
+Dropdown List: Knowledge_Mobilization_Activitypicks
+Label: Knowledge Mobilization Activity
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Events (Knowledgepicks)
+Choice value: Events
+
+
+Textbox: If_other_please_specifyknowledge
+Label: If other, please specify
+Value at run time: test
+
+Long Text Area: Description_of_Activity
+Label: Description of Activity
+Value at run time: test
+
+Number: Number_of_ParticipantsNUM
+Label: Number of Participants
+Value at run time: 5
+
+Radio Buttons: Add_knowledge_Mobilization
+Label: Do you want to add another Knowledge Mobilization Activity for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Knowledge Mobile Assign
+{!var_knowledgemobilization.Description_of_Activty__c} Equals {!Description_of_Activity}
+{!var_knowledgemobilization.Number_of_Participants__c} Equals {!Number_of_ParticipantsNUM}
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} Equals {!Knowledgepicks}
+{!var_knowledgemobilization.Knowledge_Mobilization__c} Equals {!If_other_please_specifyknowledge}
+Result
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} = "Events"
+{!var_knowledgemobilization.Description_of_Activty__c} = "test"
+{!var_knowledgemobilization.Number_of_Participants__c} = "5"
+{!var_knowledgemobilization.Knowledge_Mobilization__c} = "test"
+ASSIGNMENT: Collection Assign Knowledge share
+{!var_knowledgemobilizationcollections} Add {!var_knowledgemobilization}
+Result
+{!var_knowledgemobilizationcollections} = "[Knowledge_Mobilization__c (No ID)]"
+DECISION: Additional Knowledge Mobilizations
+Outcome executed: yes_knowledgemobilization
+Outcome conditions:
+{!Add_knowledge_Mobilization} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Please indicate the number of knowledge mobilization activities (by type) and community of practice efforts you have undertaken during the reporting period. If your activities are not listed, please add your own type of knowledge mobilization activity.
+Display Text: DISPLAY15
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.4: Knowledge Mobilization (continued)
+
+
+Knowledge Mobilization
+
+
+
+Please indicate the number of knowledge mobilization activities (by type) and community of practice efforts you have undertaken during this quarterly reporting period. If your activities are not listed, please add your own type of knowledge mobilization activity.
+
+
+
+Dropdown List: Knowledge_Mobilization_Activitypicks
+Label: Knowledge Mobilization Activity
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Events (Knowledgepicks)
+Choice value: Events
+
+
+Textbox: If_other_please_specifyknowledge
+Label: If other, please specify
+Value at run time: test
+
+Long Text Area: Description_of_Activity
+Label: Description of Activity
+Value at run time: test
+
+Number: Number_of_ParticipantsNUM
+Label: Number of Participants
+Value at run time: 6
+
+Radio Buttons: Add_knowledge_Mobilization
+Label: Do you want to add another Knowledge Mobilization Activity for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Knowledge Mobile Assign
+{!var_knowledgemobilization.Description_of_Activty__c} Equals {!Description_of_Activity}
+{!var_knowledgemobilization.Number_of_Participants__c} Equals {!Number_of_ParticipantsNUM}
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} Equals {!Knowledgepicks}
+{!var_knowledgemobilization.Knowledge_Mobilization__c} Equals {!If_other_please_specifyknowledge}
+Result
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} = "Events"
+{!var_knowledgemobilization.Description_of_Activty__c} = "test"
+{!var_knowledgemobilization.Number_of_Participants__c} = "6"
+{!var_knowledgemobilization.Knowledge_Mobilization__c} = "test"
+ASSIGNMENT: Collection Assign Knowledge share
+{!var_knowledgemobilizationcollections} Add {!var_knowledgemobilization}
+Result
+{!var_knowledgemobilizationcollections} = "[Knowledge_Mobilization__c (No ID),Knowledge_Mobilization__c (No ID)]"
+DECISION: Additional Knowledge Mobilizations
+Skipped this outcome because its conditions weren't met: yes_knowledgemobilization
+Outcome conditions:
+{!Add_knowledge_Mobilization} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Overall Knowledge Mobilization Question
+Display Text: displaykmdata
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.4: Knowledge Mobilization (continued)
+
+
+Long Text Area: With_regards_to_your_knowledge_mobilization_activities_have_you_collected_any_d2
+Label: With regards to your knowledge mobilization activities during this quarterly reporting period, have you collected any data on how audiences you have reached are using the knowledge generated? If so, please share highlights/​results.
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign KM Q
+{!annualvar.With_regards_to_your_KM_what_data_Share__c} Equals {!With_regards_to_your_knowledge_mobilization_activities_have_you_collected_any_d2}
+Result
+{!annualvar.With_regards_to_your_KM_what_data_Share__c} = "test"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Project Partnerships
+Display Text: DISPLAY17
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.5: Project Partnerships
+
+
+Radio Buttons: Has_your_team_established_new_partnerships_during_this_reporting_period
+Label: Has your team established new partnerships during this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+DECISION: New partnerships
+Outcome executed: yes_newpartnerships
+Outcome conditions:
+{!Has_your_team_established_new_partnerships_during_this_reporting_period} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+ASSIGNMENT: assignprojectpartnertoaqrs
+{!annualvar.Has_your_team_formed_new_partnerships__c} Equals {!Has_your_team_established_new_partnerships_during_this_reporting_period}
+Result
+{!annualvar.Has_your_team_formed_new_partnerships__c} = "Yes"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Project Partnerships
+Display Text: DISDPLAY16
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.5: Project Partnerships (continued)
+New Partners
+
+Please list your new partners from this quarterly reporting period and tell us more about these partners. For example: How are they contributing to the project? For example, were they formed to engage equity-seeking groups? What industry are they from?
+
+
+
+Textbox: Name_of_PartnerSHORT
+Label: Name of Partner
+Value at run time: test
+
+Dropdown List: Relationship_status
+Label: Relationship status
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Service Delivery Partner (relationshipstatus)
+Choice value: Service Delivery Partner
+
+
+Dropdown List: Equity_Seeking_Group
+Label: Equity Seeking Group
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Newcomers (arrived in Canada in last 5 years) (equityseekinggroup)
+Choice value: Newcomers (arrived in Canada in last 5 years)
+
+
+Dropdown List: Ecosystems_Category
+Label: Ecosystems Category
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Employment or settlement service providers (ecosystem)
+Choice value: Employment or settlement service providers
+
+
+Dropdown List: Industryprojectpartner
+Label: Industry
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Utilities (industry)
+Choice value: Utilities
+
+
+Dropdown List: Sector_Type
+Label: Sector Type
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Public (Civil Service) (sectortype)
+Choice value: Public (Civil Service)
+
+
+Dropdown List: Location_ProjectPartnership
+Label: Location
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: New Brunswick (Locationprojectpartners)
+Choice value: New Brunswick
+
+
+Long Text Area: Description_of_collaboration_activities_and_how_are_they_contributing_to_the_pro
+Label: Description of collaboration activities and how are they contributing to the project
+Value at run time: test
+
+Radio Buttons: Do_you_have_additional_partners
+Label: Do you want to add another partner for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Yes (Yes)
+Choice value: Yes
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Project Partnership
+{!var_projectpartnerships.Name_of_Partner__c} Equals {!Name_of_PartnerSHORT}
+{!var_projectpartnerships.Relationship_Status__c} Equals {!relationshipstatus}
+{!var_projectpartnerships.Equity_Seeking_Group__c} Equals {!equityseekinggroup}
+{!var_projectpartnerships.Ecosystem_Category__c} Equals {!ecosystem}
+{!var_projectpartnerships.Industry__c} Equals {!industry}
+{!var_projectpartnerships.Sector_Type__c} Equals {!sectortype}
+{!var_projectpartnerships.Description_of_collaboration_activities__c} Equals {!Description_of_collaboration_activities_and_how_are_they_contributing_to_the_pro}
+{!var_projectpartnerships.Location__c} Equals {!Locationprojectpartners}
+Result
+{!var_projectpartnerships.Sector_Type__c} = "Public (Civil Service)"
+{!var_projectpartnerships.Description_of_collaboration_activities__c} = "test"
+{!var_projectpartnerships.Name_of_Partner__c} = "test"
+{!var_projectpartnerships.Equity_Seeking_Group__c} = "Newcomers (arrived in Canada in last 5 years)"
+{!var_projectpartnerships.Location__c} = "New Brunswick"
+{!var_projectpartnerships.Ecosystem_Category__c} = "Employment or settlement service providers"
+{!var_projectpartnerships.Relationship_Status__c} = "Service Delivery Partner"
+{!var_projectpartnerships.Industry__c} = "Utilities"
+ASSIGNMENT: Assign proj part collection
+{!var_projectpartnershipcollection} Add {!var_projectpartnerships}
+Result
+{!var_projectpartnershipcollection} = "[Project_Partnership__c (No ID)]"
+DECISION: Add partners
+Outcome executed: yes_projectpartner
+Outcome conditions:
+{!Do_you_have_additional_partners} (Yes) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Project Partnerships
+Display Text: DISDPLAY16
+Value at run time:
+
+Section 3: Quarterly Project Metrics
+Section 3.5: Project Partnerships (continued)
+New Partners
+
+Please list your new partners from this quarterly reporting period and tell us more about these partners. For example: How are they contributing to the project? For example, were they formed to engage equity-seeking groups? What industry are they from?
+
+
+
+Textbox: Name_of_PartnerSHORT
+Label: Name of Partner
+Value at run time: test
+
+Dropdown List: Relationship_status
+Label: Relationship status
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Not Applicable (relationshipstatus)
+Choice value: Not Applicable
+
+
+Dropdown List: Equity_Seeking_Group
+Label: Equity Seeking Group
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Indigenous Persons (equityseekinggroup)
+Choice value: Indigenous Persons
+
+
+Dropdown List: Ecosystems_Category
+Label: Ecosystems Category
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: K-12 Education (Public, Private, Etc) (ecosystem)
+Choice value: K-12 Education (Public, Private, Etc)
+
+
+Dropdown List: Industryprojectpartner
+Label: Industry
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Construction (industry)
+Choice value: Construction
+
+
+Dropdown List: Sector_Type
+Label: Sector Type
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Public (Political) (sectortype)
+Choice value: Public (Political)
+
+
+Dropdown List: Location_ProjectPartnership
+Label: Location
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Northwest Territories (Locationprojectpartners)
+Choice value: Northwest Territories
+
+
+Long Text Area: Description_of_collaboration_activities_and_how_are_they_contributing_to_the_pro
+Label: Description of collaboration activities and how are they contributing to the project
+Value at run time: test
+
+Radio Buttons: Do_you_have_additional_partners
+Label: Do you want to add another partner for this quarterly reporting period?
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: No (No)
+Choice value: No
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign Project Partnership
+{!var_projectpartnerships.Name_of_Partner__c} Equals {!Name_of_PartnerSHORT}
+{!var_projectpartnerships.Relationship_Status__c} Equals {!relationshipstatus}
+{!var_projectpartnerships.Equity_Seeking_Group__c} Equals {!equityseekinggroup}
+{!var_projectpartnerships.Ecosystem_Category__c} Equals {!ecosystem}
+{!var_projectpartnerships.Industry__c} Equals {!industry}
+{!var_projectpartnerships.Sector_Type__c} Equals {!sectortype}
+{!var_projectpartnerships.Description_of_collaboration_activities__c} Equals {!Description_of_collaboration_activities_and_how_are_they_contributing_to_the_pro}
+{!var_projectpartnerships.Location__c} Equals {!Locationprojectpartners}
+Result
+{!var_projectpartnerships.Sector_Type__c} = "Public (Political)"
+{!var_projectpartnerships.Description_of_collaboration_activities__c} = "test"
+{!var_projectpartnerships.Name_of_Partner__c} = "test"
+{!var_projectpartnerships.Equity_Seeking_Group__c} = "Indigenous Persons"
+{!var_projectpartnerships.Location__c} = "Northwest Territories"
+{!var_projectpartnerships.Ecosystem_Category__c} = "K-12 Education (Public, Private, Etc)"
+{!var_projectpartnerships.Relationship_Status__c} = "Not Applicable"
+{!var_projectpartnerships.Industry__c} = "Construction"
+ASSIGNMENT: Assign proj part collection
+{!var_projectpartnershipcollection} Add {!var_projectpartnerships}
+Result
+{!var_projectpartnershipcollection} = "[Project_Partnership__c (No ID),Project_Partnership__c (No ID)]"
+DECISION: Add partners
+Skipped this outcome because its conditions weren't met: yes_projectpartner
+Outcome conditions:
+{!Do_you_have_additional_partners} (No) Equals {!Yes} (Yes)
+All conditions must be true (AND)
+
+Default outcome executed.
+ASSIGNMENT: Assign Project to Variable
+{!annualvar.Project__c} Equals {!recordId}
+{!annualvar.Name} Equals {!AQReportNameVar}
+Result
+{!annualvar.Name} = "Test Project a New Test Project to...: Q4/Annual (ending March 31, 2023)"
+{!annualvar.Project__c} = "a00I90000013InzIAE"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Cannotgobackscreen
+Display Text: cannotgobacktext
+Value at run time:
+
+Thank you for entering the quarterly activity portion of the Quarterly/Annual Report. The following Sections are now complete.
+
+
+
+Section 1: Quarterly Objectives & Progress
+
+Section 2: Quarterly Learnings & Achievements
+
+Section 3: Quarterly Project Metrics
+
+
+
+If you wish to review these Sections, please click Previous to do so now. Once you click Next the quarterly activity portion of your Quarterly/Annual Report cannot be changed.
+
+
+
+Please click Next for the following Sections:
+
+
+
+Section 4: Annual Objectives, Progress, Learnings & Achievements
+
+Section 5: Annual Perception Scale & Project Metrics
+
+Section 6: Quarterly Financial Report
+
+Section 7: Additional Information
+
+
+
+Selected Navigation Button: NEXT
+CREATE RECORDS: Get Record
+Create Annual_Quarterly_Report__c records using the values that are stored in {!annualvar}.
+Variable Values
+[Reporting_Period__c=Q4/Annual (ending March 31, 2023),Project_Start_Date__c=null,Project_Ends_Date__c=null,Project_Lead_Name__c=test test,Email__c=test@mail.com,Website__c=test,Lead_Organization__c=Future Skills Centre,What_have_you_learned_over_the_past_quar__c=test,What_advice_would_you_give_other_FSC_fun__c=test,What_achievement_s_from_the_past_quarte__c=test,Did_you_enroll_any_new_participants__c=Yes,Did_you_enroll_any_new_organization_s__c=Yes,Have_you_engaged_in_any_training_to_date__c=Yes,Did_you_train_any_organizations_during_t__c=Yes,did_you_engage_new_equity_seeking_partic__c=Yes,Have_you_completed_any_knowledge_mobiliz__c=Yes,With_regards_to_your_KM_what_data_Share__c=test,Has_your_team_formed_new_partnerships__c=Yes,Project__c=a00I90000013InzIAE,Name=Test Project a New Test Project to...: Q4/Annual (ending March 31, 2023)]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+DECISION: Annual or Quarterly
+Outcome executed: Annual
+Outcome conditions:
+{!I_wish_to_submit_the_following_report} (Q4/Annual (ending March 31, 2023)) Contains Annual
+All conditions must be true (AND)
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: BACKGROUND AND OVERVIEW
+Display Text: DISPLAY18_0
+Value at run time:
+
+Annual Report (Sections 4 & 5)
+
+
+
+These sections are for project partners to share the progress of their projects for the annual reporting period of April 1, 2022, to March 31, 2023.
+
+
+
+Selected Navigation Button: NEXT
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Annual Objectives, Progress, Learning and Acheivements
+Display Text: Section1ARText
+Value at run time:
+
+Section 4: Annual Objectives, Progress, Learning and Achievements
+
+
+
+Long Text Area: Please_take_a_moment_to_revisit_your_overall_project_objectives_AR
+Label: Please take a moment to revisit your overall project objectives and reflect on how they have evolved over the past year.
+Value at run time: test
+
+Long Text Area: What_have_you_learned_over_the_past_year_when_trying_to_accomplish_these_objecti
+Label: What have you learned over the past year when trying to accomplish these objectives? What is working well and what isn’t?
+Value at run time: test
+
+Long Text Area: What_achievement_s_from_the_past_year_are_you_most_proud_of
+Label: What achievement(s) from the past year are you most proud of?
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: assnannualobj
+{!Var_objective.AR_What_achievement_from_the_past_year__c} Equals {!What_have_you_learned_over_the_past_year_when_trying_to_accomplish_these_objecti}
+{!Var_objective.AR_What_achievement_from_the_past_year__c} Equals {!What_achievement_s_from_the_past_year_are_you_most_proud_of}
+{!Var_objective.AR_Overall_Project_Objectives__c} Equals {!Please_take_a_moment_to_revisit_your_overall_project_objectives_AR}
+Result
+{!Var_objective.AR_What_achievement_from_the_past_year__c} = "test"
+{!Var_objective.AR_Overall_Project_Objectives__c} = "test"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Perception Scale
+Display Text: displayperceptionscale
+Value at run time:
+
+Section 5: Annual Perception Scale
+
+
+
+Please indicate your responses to the following statements:
+
+
+
+Dropdown List: You_have_an_understanding_of_the_Future_Skills_Centre_s_objectives_and_prioritie
+Label: You have an understanding of the Future Skills Centre's objectives and priorities.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Disagree (UndertsandingofFSCobjectiveslist)
+Choice value: Disagree
+
+
+Dropdown List: You_have_a_strong_working_relationship_with_the_Future_Skills_Centre
+Label: You have a strong working relationship with the Future Skills Centre.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Agree (strongworkingrelationshiplist)
+Choice value: Agree
+
+
+Dropdown List: The_Future_Skills_Centre_s_work_is_valuable_relevant_and_actionable
+Label: The Future Skills Centre's work is valuable, relevant, and actionable.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Strongly Agree (FSCworkvaluablelist)
+Choice value: Strongly Agree
+
+
+Dropdown List: The_Future_Skills_Centre_contributes_to_improving_the_responsiveness_of_skills_d
+Label: The Future Skills Centre contributes to improving the responsiveness of skills development programming to meet Canadians' evolving needs.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Neutral (fsccontributestoresponsivelist)
+Choice value: Neutral
+
+
+Dropdown List: The_information_and_knowledge_produced_by_the_Future_Skills_Centre_provides_usef
+Label: The information and knowledge produced by the Future Skills Centre provides useful information on emerging in-demand skills.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Neutral (fscusefullinfoemerglist)
+Choice value: Neutral
+
+
+Dropdown List: The_information_and_knowledge_produced_by_the_Future_Skills_Centre_complements_e
+Label: The information and knowledge produced by the Future Skills Centre complements existing knowledge.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Neutral (infoknowprodbyfsccomplimentsslist)
+Choice value: Neutral
+
+
+Dropdown List: You_have_increased_your_knowledge_of_current_and_emerging_in_demand_skills
+Label: You have increased your knowledge of current and emerging in-demand skills.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Disagree (increasedknowcurrentemergindskills)
+Choice value: Disagree
+
+
+Dropdown List: You_have_increased_your_knowledge_of_effective_training_practices
+Label: You have increased your knowledge of effective training practices.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Neutral (increasedknoweffectivetrainprac)
+Choice value: Neutral
+
+
+Dropdown List: You_pass_along_information_that_originates_from_the_Future_Skills_Centre_to_your
+Label: You pass along information that originates from the Future Skills Centre to your networks.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Neutral (passalonginfofromFSC)
+Choice value: Neutral
+
+
+Dropdown List: You_have_fully_assessed_the_implications_for_program_and_policy_design_as_relate
+Label: You have fully assessed the implications for program and policy design as related to emerging skills and effective training practices.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Disagree (fullyassessedimplicatprogramdesign)
+Choice value: Disagree
+
+
+Dropdown List: You_have_integrated_effective_practices_into_policy_and_programs
+Label: You have integrated effective practices into policy and programs.
+Data Type: Text
+Choices selected at runtime:
+Choice selected at runtime: Neutral (integratedpracpolicy)
+Choice value: Neutral
+
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: assignperception1
+{!annualvar.Understanding_of_FSC_Obj_Priorities__c} Equals {!UndertsandingofFSCobjectiveslist}
+{!annualvar.Strong_working_relationship_with_FSC__c} Equals {!strongworkingrelationshiplist}
+{!annualvar.FSC_s_work_is_valuable_relevant__c} Equals {!FSCworkvaluablelist}
+{!annualvar.FSC_Contrib_to_responsiveness_of_SD_prog__c} Equals {!fsccontributestoresponsivelist}
+{!annualvar.FSC_provides_useful_info_on_emerg_skill__c} Equals {!fscusefullinfoemerglist}
+{!annualvar.Info_know_prod_by_FSC_comps_exist_know__c} Equals {!infoknowprodbyfsccomplimentsslist}
+{!annualvar.Increased_know_of_current_in_demand_skil__c} Equals {!increasedknowcurrentemergindskills}
+{!annualvar.Increased_know_of_effective_training_pra__c} Equals {!increasedknoweffectivetrainprac}
+{!annualvar.You_pass_along_info_from_FSC__c} Equals {!passalonginfofromFSC}
+{!annualvar.You_have_full_asses_implications_for_pro__c} Equals {!fullyassessedimplicatprogramdesign}
+{!annualvar.You_have_integrated_effective_practices__c} Equals {!integratedpracpolicy}
+Result
+{!annualvar.FSC_provides_useful_info_on_emerg_skill__c} = "Neutral"
+{!annualvar.Info_know_prod_by_FSC_comps_exist_know__c} = "Neutral"
+{!annualvar.Increased_know_of_current_in_demand_skil__c} = "Disagree"
+{!annualvar.You_have_full_asses_implications_for_pro__c} = "Disagree"
+{!annualvar.FSC_s_work_is_valuable_relevant__c} = "Strongly Agree"
+{!annualvar.You_have_integrated_effective_practices__c} = "Neutral"
+{!annualvar.Strong_working_relationship_with_FSC__c} = "Agree"
+{!annualvar.Increased_know_of_effective_training_pra__c} = "Neutral"
+{!annualvar.Understanding_of_FSC_Obj_Priorities__c} = "Disagree"
+{!annualvar.FSC_Contrib_to_responsiveness_of_SD_prog__c} = "Neutral"
+{!annualvar.You_pass_along_info_from_FSC__c} = "Neutral"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Perceptionscale2
+Display Text: displayperception2
+Value at run time:
+
+Section 5: Annual Project Metrics (continued)
+
+
+
+Number: How_many_if_any_project_participants_have_reported_that_the_knowledge_improveDM
+Label: How many, if any, project participants have reported that the knowledge acquired through the project have led to improved career decision making? Please leave blank if not applicable.
+Value at run time: 4
+
+Number: How_many_if_any_project_participants_have_reported_improved_DMforindemandskill
+Label: How many, if any, project participants have reported knowledge acquired for improved decision-making on current and emerging in-demand skills?
+Value at run time: 5
+
+Number: How_many_if_any_project_participants_whereaccesscareerinfoadvguid
+Label: How many, if any, project participants have reported greater awareness of where to access career development information, advice, and guidance?
+Value at run time: 5
+
+Number: How_many_if_any_employers_participating_in_projects_have_self_reported_improved
+Label: How many, if any, employers participating in projects have self-reported improved on-the-job performance, measured by key business indicators (such as reduced error rates, improved customer satisfaction, improved workplace health and safety)?
+Value at run time: 3
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: assignperception2
+{!annualvar.How_many_if_any_project_participants_ha__c} Equals {!How_many_if_any_project_participants_have_reported_that_the_knowledge_improveDM}
+{!annualvar.How_Many_improved_dm_on_in_demand_skill__c} Equals {!How_many_if_any_project_participants_have_reported_improved_DMforindemandskill}
+{!annualvar.How_many_greater_a_of_career_dev_advi__c} Equals {!How_many_if_any_project_participants_whereaccesscareerinfoadvguid}
+{!annualvar.How_many_emp_improved_on_job_perf__c} Equals {!How_many_if_any_employers_participating_in_projects_have_self_reported_improved}
+Result
+{!annualvar.How_many_if_any_project_participants_ha__c} = "4"
+{!annualvar.How_Many_improved_dm_on_in_demand_skill__c} = "5"
+{!annualvar.How_many_greater_a_of_career_dev_advi__c} = "5"
+{!annualvar.How_many_emp_improved_on_job_perf__c} = "3"
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: reviewannual
+Display Text: reviewannualtext
+Value at run time:
+
+Thank you for filling in the annual activity portion of the Quarterly/Annual Report. The following Sections are now complete.
+
+
+
+Section 4: Annual Objectives, Progress, Learnings & Achievements
+
+Section 5: Annual Perception Scale & Project Metrics
+
+
+
+If you wish to review these Sections, please click Previous to do so now. Once you click Next the annual activity portion of your Quarterly/Annual Report cannot be changed.
+
+
+
+Please click Next to enter the following Sections:
+
+
+
+Section 6: Quarterly Financial Report
+
+Section 7: Additional Information
+
+
+
+Selected Navigation Button: NEXT
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Quarterly Financial Reports
+Display Text: Quarterly_FinancialReports
+Value at run time:
+
+Section 6: Quarterly Financial Report
+
+
+
+This section is where you upload your signed Quarterly Financial Report. Please ensure you use the template located here.
+
+
+
+Important Notes:
+
+We understand that our partners may have some information that is not universally shared within their project team. For example, some financial information. If this is a concern for you, please do not upload these documents to the FSC Project Portal, please send them via email to arshdeep.aulakh@fsc-ccf.ca.
+
+﻿
+
+
+
+Checkbox: I_need_to_upload_the_Excel_version_of_my_Quarterly_Financial_Report_to_this_form
+Label: MANDATORY EXCEL FILE: Check this box to upload the Excel version of your Quarterly Financial Report.
+Value at run time: true
+
+Lightning Component: Quarterly_Financial_Report
+Screen component: forceContent:fileUpload
+Inputs:
+accept = (.xls, .xlsx)
+label = (Quarterly Financial Report)
+recordId = annualvar.Id (a0iI90000004Y36IAE)
+Outputs:
+accept = .xls, .xlsx
+contentDocIds = []
+contentVersionIds = []
+fileNames = []
+label = Quarterly Financial Report
+recordId = a0iI90000004Y36IAE
+
+Checkbox: I_need_to_upload_a_PDF_of_the_signature_on_my_Quarterly_Financial_Report
+Label: If you are unable to add a signature to the Excel version of your Quarterly Financial Report you may also upload a signed version as a PDF.
+Value at run time: false
+
+Lightning Component: Quarterly_Financial_Report_Signature
+Screen component: forceContent:fileUpload
+Inputs:
+accept = (.pdf)
+label = (Quarterly Financial Report Signature)
+recordId = annualvar.Id (a0iI90000004Y36IAE)
+Outputs:
+accept = null
+label = null
+recordId = null
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Assign all variables created
+{!Var_objective.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_participants.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_organizations.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_trainingparticipants.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_trainingorganization.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_knowledgemobilization.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_projectpartnerships.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!annualvar.Project__c} Equals {!recordId}
+{!var_quarterlyfinreports.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_whatadvice} Equals {!annualvar.Id}
+{!var_whatchallenges} Equals {!annualvar.Id}
+{!var_whatlearned} Equals {!annualvar.Id}
+{!var_whatachievement} Equals {!annualvar.Id}
+{!annualvar.Additional_Relevant_Information__c} Equals {!Is_there_any_other_relevant_information_that_you_wish_to_share_as_part_of_your_s}
+{!QFRID} Equals {!annualvar.Id}
+Result
+{!annualvar.Additional_Relevant_Information__c} = "null"
+{!var_quarterlyfinreports.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!Var_organizations.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!Var_participants.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_trainingparticipants.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_projectpartnerships.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_whatachievement} = "a0iI90000004Y36IAE"
+{!QFRID} = "a0iI90000004Y36IAE"
+{!Var_objective.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_trainingorganization.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_whatlearned} = "a0iI90000004Y36IAE"
+{!var_whatchallenges} = "a0iI90000004Y36IAE"
+{!annualvar.Project__c} = "a00I90000013InzIAE"
+{!var_whatadvice} = "a0iI90000004Y36IAE"
+{!var_knowledgemobilization.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+LOOP: loop objective var
+Loop Through: []
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop objective var
+{!Var_objective.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_objective.Objective__c} Equals {!loop_objective_var.Objective__c}
+{!Var_objective.Project__c} Equals {!Get_Project.Id}
+Result
+{!Var_objective.Objective__c} = "test"
+{!Var_objective.Project__c} = "a00I90000013InzIAE"
+{!Var_objective.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!objVAR2multi} Add {!Var_objective}
+Result
+{!objVAR2multi} = "[Objective_for_Reporting__c (No ID)]"
+LOOP: loop objective var
+End Loop.
+CREATE RECORDS: Create Objectives
+Create Objective_for_Reporting__c records using the values that are stored in {!objVAR2multi}.
+Variable Values
+[Name=Objective,Objective__c=test,How_do_you_feel_about_progress__c=Ahead of plan,If_you_are_off_track_what_do_you_need__c=test,AR_What_achievement_from_the_past_year__c=test,AR_Overall_Project_Objectives__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop participant var
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop participant var
+{!Var_participants.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_participants.Location__c} Equals {!loop_participant_var_0.Locationpicklist__c}
+{!Var_participants.Actual_Number_of_Participants__c} Equals {!loop_participant_var_0.Actual_Number_of_Participants__c}
+{!Var_participants.Original_Estimated_Number_of_Participant__c} Equals {!loop_participant_var_0.Original_Estimated_Number_of_Participant__c}
+{!Var_participants.Project__c} Equals {!Get_Project.Id}
+{!Var_participants.Did_you_enroll_any_new_participants__c} Equals {!loop_participant_var_0.Did_you_enroll_any_new_participants__c}
+Result
+{!Var_participants.Project__c} = "a00I90000013InzIAE"
+{!Var_participants.Original_Estimated_Number_of_Participant__c} = "4"
+{!Var_participants.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!Var_participants.Location__c} = "Manitoba"
+{!Var_participants.Did_you_enroll_any_new_participants__c} = "Yes"
+{!Var_participants.Actual_Number_of_Participants__c} = "3"
+ASSIGNMENT: assntomulti
+{!participantsVAR2multi} Add {!Var_participants}
+Result
+{!participantsVAR2multi} = "[Participants__c (No ID)]"
+LOOP: loop participant var
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop participant var
+{!Var_participants.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_participants.Location__c} Equals {!loop_participant_var_0.Locationpicklist__c}
+{!Var_participants.Actual_Number_of_Participants__c} Equals {!loop_participant_var_0.Actual_Number_of_Participants__c}
+{!Var_participants.Original_Estimated_Number_of_Participant__c} Equals {!loop_participant_var_0.Original_Estimated_Number_of_Participant__c}
+{!Var_participants.Project__c} Equals {!Get_Project.Id}
+{!Var_participants.Did_you_enroll_any_new_participants__c} Equals {!loop_participant_var_0.Did_you_enroll_any_new_participants__c}
+Result
+{!Var_participants.Project__c} = "a00I90000013InzIAE"
+{!Var_participants.Original_Estimated_Number_of_Participant__c} = "6"
+{!Var_participants.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!Var_participants.Location__c} = "British Columbia"
+{!Var_participants.Did_you_enroll_any_new_participants__c} = "Yes"
+{!Var_participants.Actual_Number_of_Participants__c} = "5"
+ASSIGNMENT: assntomulti
+{!participantsVAR2multi} Add {!Var_participants}
+Result
+{!participantsVAR2multi} = "[Participants__c (No ID),Participants__c (No ID)]"
+LOOP: loop participant var
+End Loop.
+CREATE RECORDS: Create Participant P
+Create Participants__c records using the values that are stored in {!participantsVAR2multi}.
+Variable Values
+[Did_you_enroll_any_new_participants__c=Yes,Actual_Number_of_Participants__c=3,Locationpicklist__c=British Columbia,Original_Estimated_Number_of_Participant__c=4,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Location__c=Manitoba,Project__c=a00I90000013InzIAE]
+[Did_you_enroll_any_new_participants__c=Yes,Actual_Number_of_Participants__c=5,Locationpicklist__c=British Columbia,Original_Estimated_Number_of_Participant__c=6,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Location__c=British Columbia,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop orgs var
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop orgnization var
+{!Var_organizations.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_organizations.Location__c} Equals {!loop_org_var.Location__c}
+{!Var_organizations.Description_of_how_the_organization_is_e__c} Equals {!loop_org_var.Description_of_how_the_organization_is_e__c}
+{!Var_organizations.Organization_Name__c} Equals {!loop_org_var.Organization_Name__c}
+{!Var_organizations.Project__c} Equals {!Get_Project.Id}
+Result
+{!Var_organizations.Location__c} = "New Brunswick"
+{!Var_organizations.Project__c} = "a00I90000013InzIAE"
+{!Var_organizations.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!Var_organizations.Description_of_how_the_organization_is_e__c} = "test"
+{!Var_organizations.Organization_Name__c} = "test"
+ASSIGNMENT: assntomulti
+{!orgVAR2multi} Add {!Var_organizations}
+Result
+{!orgVAR2multi} = "[Organization__c (No ID)]"
+LOOP: loop orgs var
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop orgnization var
+{!Var_organizations.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!Var_organizations.Location__c} Equals {!loop_org_var.Location__c}
+{!Var_organizations.Description_of_how_the_organization_is_e__c} Equals {!loop_org_var.Description_of_how_the_organization_is_e__c}
+{!Var_organizations.Organization_Name__c} Equals {!loop_org_var.Organization_Name__c}
+{!Var_organizations.Project__c} Equals {!Get_Project.Id}
+Result
+{!Var_organizations.Location__c} = "British Columbia"
+{!Var_organizations.Project__c} = "a00I90000013InzIAE"
+{!Var_organizations.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!Var_organizations.Description_of_how_the_organization_is_e__c} = "test"
+{!Var_organizations.Organization_Name__c} = "test"
+ASSIGNMENT: assntomulti
+{!orgVAR2multi} Add {!Var_organizations}
+Result
+{!orgVAR2multi} = "[Organization__c (No ID),Organization__c (No ID)]"
+LOOP: loop orgs var
+End Loop.
+CREATE RECORDS: Create Project Organization
+Create Organization__c records using the values that are stored in {!orgVAR2multi}.
+Variable Values
+[Description_of_how_the_organization_is_e__c=test,Organization_Name__c=test,Location__c=New Brunswick,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+[Description_of_how_the_organization_is_e__c=test,Organization_Name__c=test,Location__c=British Columbia,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop participant training
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop participant training var
+{!var_trainingparticipants.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_trainingparticipants.Training_Type__c} Equals {!var_trainingparticipants.Training_Typepicklsit__c}
+{!var_trainingparticipants.Description_of_Training__c} Equals {!loop_parttraining_var.Description_of_Training__c}
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} Equals {!loop_parttraining_var.Actual_Number_of_ParticipantsNUM__c}
+{!var_trainingparticipants.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} = "4"
+{!var_trainingparticipants.Description_of_Training__c} = "teset"
+{!var_trainingparticipants.Training_Type__c} = "Hybrid/ blended virtual and in-person"
+{!var_trainingparticipants.Project__c} = "a00I90000013InzIAE"
+{!var_trainingparticipants.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!participantstrainVAR2multi} Add {!var_trainingparticipants}
+Result
+{!participantstrainVAR2multi} = "[Training__c (No ID)]"
+LOOP: loop participant training
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop participant training var
+{!var_trainingparticipants.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_trainingparticipants.Training_Type__c} Equals {!var_trainingparticipants.Training_Typepicklsit__c}
+{!var_trainingparticipants.Description_of_Training__c} Equals {!loop_parttraining_var.Description_of_Training__c}
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} Equals {!loop_parttraining_var.Actual_Number_of_ParticipantsNUM__c}
+{!var_trainingparticipants.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_trainingparticipants.Actual_Number_of_ParticipantsNUM__c} = "4"
+{!var_trainingparticipants.Description_of_Training__c} = "test"
+{!var_trainingparticipants.Training_Type__c} = "Hybrid/ blended virtual and in-person"
+{!var_trainingparticipants.Project__c} = "a00I90000013InzIAE"
+{!var_trainingparticipants.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!participantstrainVAR2multi} Add {!var_trainingparticipants}
+Result
+{!participantstrainVAR2multi} = "[Training__c (No ID),Training__c (No ID)]"
+LOOP: loop participant training
+End Loop.
+CREATE RECORDS: Create Participant Training
+Create Training__c records using the values that are stored in {!participantstrainVAR2multi}.
+Variable Values
+[Actual_Number_of_ParticipantsNUM__c=4,Description_of_Training__c=teset,Training_Typepicklsit__c=Hybrid/ blended virtual and in-person,Training_Type__c=Hybrid/ blended virtual and in-person,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+[Actual_Number_of_ParticipantsNUM__c=4,Description_of_Training__c=test,Training_Typepicklsit__c=Hybrid/ blended virtual and in-person,Training_Type__c=Hybrid/ blended virtual and in-person,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop org training var
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop orgnization train var
+{!var_trainingorganization.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_trainingorganization.Training_Type__c} Equals {!loop_orgtraining_var_0.Training_Type__c}
+{!var_trainingorganization.Organization_Name__c} Equals {!loop_orgtraining_var_0.Organization_Name__c}
+{!var_trainingorganization.Description_of_Training__c} Equals {!loop_orgtraining_var_0.Description_of_Training__c}
+{!var_trainingorganization.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_trainingorganization.Training_Type__c} = "test"
+{!var_trainingorganization.Organization_Name__c} = "test"
+{!var_trainingorganization.Description_of_Training__c} = "test"
+{!var_trainingorganization.Project__c} = "a00I90000013InzIAE"
+{!var_trainingorganization.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!orgtrainVAR2multi} Add {!var_trainingorganization}
+Result
+{!orgtrainVAR2multi} = "[Organization_Training__c (No ID)]"
+LOOP: loop org training var
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop orgnization train var
+{!var_trainingorganization.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_trainingorganization.Training_Type__c} Equals {!loop_orgtraining_var_0.Training_Type__c}
+{!var_trainingorganization.Organization_Name__c} Equals {!loop_orgtraining_var_0.Organization_Name__c}
+{!var_trainingorganization.Description_of_Training__c} Equals {!loop_orgtraining_var_0.Description_of_Training__c}
+{!var_trainingorganization.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_trainingorganization.Training_Type__c} = "test"
+{!var_trainingorganization.Organization_Name__c} = "test"
+{!var_trainingorganization.Description_of_Training__c} = "test"
+{!var_trainingorganization.Project__c} = "a00I90000013InzIAE"
+{!var_trainingorganization.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!orgtrainVAR2multi} Add {!var_trainingorganization}
+Result
+{!orgtrainVAR2multi} = "[Organization_Training__c (No ID),Organization_Training__c (No ID)]"
+LOOP: loop org training var
+End Loop.
+CREATE RECORDS: Create Organization Training
+Create Organization_Training__c records using the values that are stored in {!orgtrainVAR2multi}.
+Variable Values
+[Description_of_Training__c=test,Organization_Name__c=test,Training_Typepicks__c=If other, please specify below,Training_Type__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+[Description_of_Training__c=test,Organization_Name__c=test,Training_Typepicks__c=If other, please specify below,Training_Type__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop equity seeking
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop equity seeking participant training var
+{!var_equityseeking.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_equityseeking.Equity_seeking_Group__c} Equals {!loop_equity_seeking.Equity_seeking_Group__c}
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} Equals {!loop_equity_seeking.Description_of_how_the_equity_seeking_gr__c}
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} Equals {!loop_equity_seeking.Number_of_Equity_seeking_Participants__c}
+{!var_equityseeking.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_equityseeking.Project__c} = "a00I90000013InzIAE"
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} = "test"
+{!var_equityseeking.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} = "3"
+{!var_equityseeking.Equity_seeking_Group__c} = "Indigenous Persons"
+ASSIGNMENT: assntomulti
+{!equityVAR2multi} Add {!var_equityseeking}
+Result
+{!equityVAR2multi} = "[Equity_Seeking_Participants__c (No ID)]"
+LOOP: loop equity seeking
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop equity seeking participant training var
+{!var_equityseeking.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_equityseeking.Equity_seeking_Group__c} Equals {!loop_equity_seeking.Equity_seeking_Group__c}
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} Equals {!loop_equity_seeking.Description_of_how_the_equity_seeking_gr__c}
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} Equals {!loop_equity_seeking.Number_of_Equity_seeking_Participants__c}
+{!var_equityseeking.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_equityseeking.Project__c} = "a00I90000013InzIAE"
+{!var_equityseeking.Description_of_how_the_equity_seeking_gr__c} = "test"
+{!var_equityseeking.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_equityseeking.Number_of_Equity_seeking_Participants__c} = "6"
+{!var_equityseeking.Equity_seeking_Group__c} = "Newcomers (arrived in Canada in last 5 years)"
+ASSIGNMENT: assntomulti
+{!equityVAR2multi} Add {!var_equityseeking}
+Result
+{!equityVAR2multi} = "[Equity_Seeking_Participants__c (No ID),Equity_Seeking_Participants__c (No ID)]"
+LOOP: loop equity seeking
+End Loop.
+CREATE RECORDS: Create Equity Seeking Participants
+Create Equity_Seeking_Participants__c records using the values that are stored in {!equityVAR2multi}.
+Variable Values
+[Description_if__c=test,Number_of_Equity_seeking_Participants__c=3,Equity_seeking_Group__c=Indigenous Persons,Description_of_how_the_equity_seeking_gr__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+[Description_if__c=test,Number_of_Equity_seeking_Participants__c=6,Equity_seeking_Group__c=Newcomers (arrived in Canada in last 5 years),Description_of_how_the_equity_seeking_gr__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop knowledge mobil
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop knowledge mobilization
+{!var_knowledgemobilization.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_knowledgemobilization.Knowledge_Mobilization__c} Equals {!loop_knowledge_mobil.Knowledge_Mobilization__c}
+{!var_knowledgemobilization.Description_of_Activty__c} Equals {!loop_knowledge_mobil.Description_of_Activty__c}
+{!var_knowledgemobilization.Number_of_Participants__c} Equals {!loop_knowledge_mobil.Number_of_Participants__c}
+{!var_knowledgemobilization.Project__c} Equals {!Get_Project.Id}
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} Equals {!loop_knowledge_mobil.Knowledge_Mobilization_Type__c}
+Result
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} = "Events"
+{!var_knowledgemobilization.Description_of_Activty__c} = "test"
+{!var_knowledgemobilization.Number_of_Participants__c} = "5"
+{!var_knowledgemobilization.Project__c} = "a00I90000013InzIAE"
+{!var_knowledgemobilization.Knowledge_Mobilization__c} = "test"
+{!var_knowledgemobilization.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!knowledgeVAR2multi} Add {!var_knowledgemobilization}
+Result
+{!knowledgeVAR2multi} = "[Knowledge_Mobilization__c (No ID)]"
+LOOP: loop knowledge mobil
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop knowledge mobilization
+{!var_knowledgemobilization.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_knowledgemobilization.Knowledge_Mobilization__c} Equals {!loop_knowledge_mobil.Knowledge_Mobilization__c}
+{!var_knowledgemobilization.Description_of_Activty__c} Equals {!loop_knowledge_mobil.Description_of_Activty__c}
+{!var_knowledgemobilization.Number_of_Participants__c} Equals {!loop_knowledge_mobil.Number_of_Participants__c}
+{!var_knowledgemobilization.Project__c} Equals {!Get_Project.Id}
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} Equals {!loop_knowledge_mobil.Knowledge_Mobilization_Type__c}
+Result
+{!var_knowledgemobilization.Knowledge_Mobilization_Type__c} = "Events"
+{!var_knowledgemobilization.Description_of_Activty__c} = "test"
+{!var_knowledgemobilization.Number_of_Participants__c} = "6"
+{!var_knowledgemobilization.Project__c} = "a00I90000013InzIAE"
+{!var_knowledgemobilization.Knowledge_Mobilization__c} = "test"
+{!var_knowledgemobilization.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+ASSIGNMENT: assntomulti
+{!knowledgeVAR2multi} Add {!var_knowledgemobilization}
+Result
+{!knowledgeVAR2multi} = "[Knowledge_Mobilization__c (No ID),Knowledge_Mobilization__c (No ID)]"
+LOOP: loop knowledge mobil
+End Loop.
+CREATE RECORDS: Create Knowledge Mobilizations
+Create Knowledge_Mobilization__c records using the values that are stored in {!knowledgeVAR2multi}.
+Variable Values
+[Description_of_Activty__c=test,Number_of_Participants__c=5,Knowledge_Mobilization_Type__c=Events,Knowledge_Mobilization__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+[Description_of_Activty__c=test,Number_of_Participants__c=6,Knowledge_Mobilization_Type__c=Events,Knowledge_Mobilization__c=test,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+LOOP: loop proj partnership
+Loop Through: [,]
+Iteration: 0
+Current iteration item: null
+ASSIGNMENT: loop proj partnership
+{!var_projectpartnerships.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_projectpartnerships.Name_of_Partner__c} Equals {!loop_proj_partnership.Name_of_Partner__c}
+{!var_projectpartnerships.Relationship_Status__c} Equals {!loop_proj_partnership.Relationship_Status__c}
+{!var_projectpartnerships.Equity_Seeking_Group__c} Equals {!loop_proj_partnership.Equity_Seeking_Group__c}
+{!var_projectpartnerships.Ecosystem_Category__c} Equals {!loop_proj_partnership.Ecosystem_Category__c}
+{!var_projectpartnerships.Industry__c} Equals {!loop_proj_partnership.Industry__c}
+{!var_projectpartnerships.Sector_Type__c} Equals {!loop_proj_partnership.Sector_Type__c}
+{!var_projectpartnerships.Description_of_collaboration_activities__c} Equals {!loop_proj_partnership.Description_of_collaboration_activities__c}
+{!var_projectpartnerships.Location__c} Equals {!loop_proj_partnership.Location__c}
+{!var_projectpartnerships.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_projectpartnerships.Sector_Type__c} = "Public (Civil Service)"
+{!var_projectpartnerships.Description_of_collaboration_activities__c} = "test"
+{!var_projectpartnerships.Name_of_Partner__c} = "test"
+{!var_projectpartnerships.Equity_Seeking_Group__c} = "Newcomers (arrived in Canada in last 5 years)"
+{!var_projectpartnerships.Location__c} = "New Brunswick"
+{!var_projectpartnerships.Project__c} = "a00I90000013InzIAE"
+{!var_projectpartnerships.Ecosystem_Category__c} = "Employment or settlement service providers"
+{!var_projectpartnerships.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_projectpartnerships.Relationship_Status__c} = "Service Delivery Partner"
+{!var_projectpartnerships.Industry__c} = "Utilities"
+ASSIGNMENT: assntomulti
+{!partnershipsVAR2multi} Add {!var_projectpartnerships}
+Result
+{!partnershipsVAR2multi} = "[Project_Partnership__c (No ID)]"
+LOOP: loop proj partnership
+Loop Through: [,]
+Iteration: 1
+Current iteration item: null
+ASSIGNMENT: loop proj partnership
+{!var_projectpartnerships.Annual_Quarterly_Report__c} Equals {!annualvar.Id}
+{!var_projectpartnerships.Name_of_Partner__c} Equals {!loop_proj_partnership.Name_of_Partner__c}
+{!var_projectpartnerships.Relationship_Status__c} Equals {!loop_proj_partnership.Relationship_Status__c}
+{!var_projectpartnerships.Equity_Seeking_Group__c} Equals {!loop_proj_partnership.Equity_Seeking_Group__c}
+{!var_projectpartnerships.Ecosystem_Category__c} Equals {!loop_proj_partnership.Ecosystem_Category__c}
+{!var_projectpartnerships.Industry__c} Equals {!loop_proj_partnership.Industry__c}
+{!var_projectpartnerships.Sector_Type__c} Equals {!loop_proj_partnership.Sector_Type__c}
+{!var_projectpartnerships.Description_of_collaboration_activities__c} Equals {!loop_proj_partnership.Description_of_collaboration_activities__c}
+{!var_projectpartnerships.Location__c} Equals {!loop_proj_partnership.Location__c}
+{!var_projectpartnerships.Project__c} Equals {!Get_Project.Id}
+Result
+{!var_projectpartnerships.Sector_Type__c} = "Public (Political)"
+{!var_projectpartnerships.Description_of_collaboration_activities__c} = "test"
+{!var_projectpartnerships.Name_of_Partner__c} = "test"
+{!var_projectpartnerships.Equity_Seeking_Group__c} = "Indigenous Persons"
+{!var_projectpartnerships.Location__c} = "Northwest Territories"
+{!var_projectpartnerships.Project__c} = "a00I90000013InzIAE"
+{!var_projectpartnerships.Ecosystem_Category__c} = "K-12 Education (Public, Private, Etc)"
+{!var_projectpartnerships.Annual_Quarterly_Report__c} = "a0iI90000004Y36IAE"
+{!var_projectpartnerships.Relationship_Status__c} = "Not Applicable"
+{!var_projectpartnerships.Industry__c} = "Construction"
+ASSIGNMENT: assntomulti
+{!partnershipsVAR2multi} Add {!var_projectpartnerships}
+Result
+{!partnershipsVAR2multi} = "[Project_Partnership__c (No ID),Project_Partnership__c (No ID)]"
+LOOP: loop proj partnership
+End Loop.
+CREATE RECORDS: Create Project Partnerships
+Create Project_Partnership__c records using the values that are stored in {!partnershipsVAR2multi}.
+Variable Values
+[Name_of_Partner__c=test,Relationship_Status__c=Service Delivery Partner,Equity_Seeking_Group__c=Newcomers (arrived in Canada in last 5 years),Ecosystem_Category__c=Employment or settlement service providers,Industry__c=Utilities,Sector_Type__c=Public (Civil Service),Description_of_collaboration_activities__c=test,Location__c=New Brunswick,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+[Name_of_Partner__c=test,Relationship_Status__c=Not Applicable,Equity_Seeking_Group__c=Indigenous Persons,Ecosystem_Category__c=K-12 Education (Public, Private, Etc),Industry__c=Construction,Sector_Type__c=Public (Political),Description_of_collaboration_activities__c=test,Location__c=Northwest Territories,Annual_Quarterly_Report__c=a0iI90000004Y36IAE,Project__c=a00I90000013InzIAE]
+Result
+All records are ready to be created when the next screen, pause, or local action is executed or when the interview finishes.
+UPDATE RECORDS: Update Annual Report
+Update Annual_Quarterly_Report__c records whose IDs are stored in {!annualvar}.
+Variable Values
+[Reporting_Period__c=Q4/Annual (ending March 31, 2023),Project_Start_Date__c=null,Project_Ends_Date__c=null,Project_Lead_Name__c=test test,Email__c=test@mail.com,Website__c=test,Lead_Organization__c=Future Skills Centre,What_have_you_learned_over_the_past_quar__c=test,What_advice_would_you_give_other_FSC_fun__c=test,What_achievement_s_from_the_past_quarte__c=test,Did_you_enroll_any_new_participants__c=Yes,Did_you_enroll_any_new_organization_s__c=Yes,Have_you_engaged_in_any_training_to_date__c=Yes,Did_you_train_any_organizations_during_t__c=Yes,did_you_engage_new_equity_seeking_partic__c=Yes,Have_you_completed_any_knowledge_mobiliz__c=Yes,With_regards_to_your_KM_what_data_Share__c=test,Has_your_team_formed_new_partnerships__c=Yes,Project__c=a00I90000013InzIAE,Name=Test Project a New Test Project to...: Q4/Annual (ending March 31, 2023),Id=a0iI90000004Y36IAE,Understanding_of_FSC_Obj_Priorities__c=Disagree,Strong_working_relationship_with_FSC__c=Agree,FSC_s_work_is_valuable_relevant__c=Strongly Agree,FSC_Contrib_to_responsiveness_of_SD_prog__c=Neutral,FSC_provides_useful_info_on_emerg_skill__c=Neutral,Info_know_prod_by_FSC_comps_exist_know__c=Neutral,Increased_know_of_current_in_demand_skil__c=Disagree,Increased_know_of_effective_training_pra__c=Neutral,You_pass_along_info_from_FSC__c=Neutral,You_have_full_asses_implications_for_pro__c=Disagree,You_have_integrated_effective_practices__c=Neutral,How_many_if_any_project_participants_ha__c=4,How_Many_improved_dm_on_in_demand_skill__c=5,How_many_greater_a_of_career_dev_advi__c=5,How_many_emp_improved_on_job_perf__c=3,Additional_Relevant_Information__c=null]
+Result
+All records whose IDs are in {!annualvar} are ready to be updated when the next screen, pause, or local action is executed or when the interview finishes.
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: SectionOther
+Display Text: otherdisplay
+Value at run time:
+
+Section 7: Other
+
+
+
+Long Text Area: Is_there_any_other_relevant_information_that_you_wish_to_share_as_part_of_your_s
+Label: Is there any other relevant information that you wish to share as part of your submission for this reporting period?
+Value at run time: test
+
+Lightning Component: otherdocupload
+Screen component: forceContent:fileUpload
+Inputs:
+label = (Are there any other relevant materials you wish to share, as part of your submission for this reporting period?)
+recordId = annualvar.Id (a0iI90000004Y36IAE)
+Outputs:
+contentDocIds = []
+contentVersionIds = []
+fileNames = []
+label = Are there any other relevant materials you wish to share, as part of your submission for this reporting period?
+recordId = a0iI90000004Y36IAE
+
+Selected Navigation Button: NEXT
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Declaration
+Display Text: DeclarationCompletion
+Value at run time:
+
+Declaration
+
+By signing below, I hereby certify that the information contained in this report is in accordance with the Terms and Conditions of the Funding Agreement.
+
+
+
+The data and information you provide is collected under the auspices of the Future Skills Centre for the purpose of administering programs. The collection, storage, retrieval, usage and disposal of such is informed by the Information Protection and Providing Access to Information Policy at Toronto Metropolitan University. The data and information collected will be subject to the Freedom of Information and Protection of Privacy Act (Ontario).
+
+
+
+Display Text: reportingperioddisplay
+Value at run time:
+Reporting Period: Q4/Annual (ending March 31, 2023)
+
+
+
+Textbox: Declarations
+Label: Declaration
+Value at run time: test
+
+Selected Navigation Button: NEXT
+ASSIGNMENT: Update Declaration
+{!annualvar.Declaration__c} Equals {!Declarations}
+{!annualvar.Additional_Relevant_Information__c} Equals {!Is_there_any_other_relevant_information_that_you_wish_to_share_as_part_of_your_s}
+Result
+{!annualvar.Declaration__c} = "test"
+{!annualvar.Additional_Relevant_Information__c} = "test"
+UPDATE RECORDS: Update Declaration to Record
+Update Annual_Quarterly_Report__c records whose IDs are stored in {!annualvar}.
+Variable Values
+[Reporting_Period__c=Q4/Annual (ending March 31, 2023),Project_Start_Date__c=null,Project_Ends_Date__c=null,Project_Lead_Name__c=test test,Email__c=test@mail.com,Website__c=test,Lead_Organization__c=Future Skills Centre,What_have_you_learned_over_the_past_quar__c=test,What_advice_would_you_give_other_FSC_fun__c=test,What_achievement_s_from_the_past_quarte__c=test,Did_you_enroll_any_new_participants__c=Yes,Did_you_enroll_any_new_organization_s__c=Yes,Have_you_engaged_in_any_training_to_date__c=Yes,Did_you_train_any_organizations_during_t__c=Yes,did_you_engage_new_equity_seeking_partic__c=Yes,Have_you_completed_any_knowledge_mobiliz__c=Yes,With_regards_to_your_KM_what_data_Share__c=test,Has_your_team_formed_new_partnerships__c=Yes,Project__c=a00I90000013InzIAE,Name=Test Project a New Test Project to...: Q4/Annual (ending March 31, 2023),Id=a0iI90000004Y36IAE,Understanding_of_FSC_Obj_Priorities__c=Disagree,Strong_working_relationship_with_FSC__c=Agree,FSC_s_work_is_valuable_relevant__c=Strongly Agree,FSC_Contrib_to_responsiveness_of_SD_prog__c=Neutral,FSC_provides_useful_info_on_emerg_skill__c=Neutral,Info_know_prod_by_FSC_comps_exist_know__c=Neutral,Increased_know_of_current_in_demand_skil__c=Disagree,Increased_know_of_effective_training_pra__c=Neutral,You_pass_along_info_from_FSC__c=Neutral,You_have_full_asses_implications_for_pro__c=Disagree,You_have_integrated_effective_practices__c=Neutral,How_many_if_any_project_participants_ha__c=4,How_Many_improved_dm_on_in_demand_skill__c=5,How_many_greater_a_of_career_dev_advi__c=5,How_many_emp_improved_on_job_perf__c=3,Additional_Relevant_Information__c=test,Declaration__c=test]
+Result
+All records whose IDs are in {!annualvar} are ready to be updated when the next screen, pause, or local action is executed or when the interview finishes.
+SEND EMAIL: email to project lead
+Inputs:
+emailBody = {!email_template_project_lead} (<p>Dear test</p><p><br></p><p>Thank you for submitting your <span style="background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);">Q4/Annual (ending March 31, 2023)</span> report to FSC. We are pleased to inform you that we have successfully received your report, which can be accessed here: <span style="color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);">https://magnet-fsc.my.site.com/a0iI90000004Y36IAE/p</span></p><p><br></p><p>Our team will review your submission shortly, and we will reach out to you if we have any questions or require additional information.</p><p><br></p><p>If you have any questions or concerns about the report, please submit an inquiry using the "Inquiry/Document Submission" button on the portal.</p><p><br></p><p>Thank you for partnering with FSC, and we look forward to continuing our collaboration with you.</p><p><br></p><p>Best regards,</p><p><br></p><p>The FSC Team</p>)
+emailAddresses = {!annualvar.Email__c} (test@mail.com)
+sendRichBody = true
+emailSubject = Confirmation of Receipt: FSC-CCF Annual/Quarterly Report
+Outputs:
+None.
+SUBMIT FOR APPROVAL: Submit For Approval
+Inputs:
+processDefinitionNameOrId = AQR_Submission
+objectId = {!annualvar.Id} (a0iI90000004Y36IAE)
+Outputs:
+newWorkItemIds ([04iI9000000EHJXIA4, 04iI9000000EHJYIA4, 04iI9000000EHJZIA4, 04iI9000000EHJaIAO])
+instanceId (04gI9000000EG3VIAW)
+entityId (a0iI90000004Y36IAE)
+instanceStatus (Pending)
+actorIds ([0053h000006CJjJAAW, 005I9000000I3eCIAS, 0053h000002mbh0AAA, 0053h000002md4MAAQ])
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
+SCREEN: Submit Screen
+Display Text: SubmittedText
+Value at run time:
+
+Thank you for completing your Quarterly/Annual Report for the following reporting period: Q4/Annual (ending March 31, 2023)
+
+
+
+We will review your submission shortly and get back to you if we have any questions.
+
+
+
+To review/download your submission please click on the following Link.
+
+
+
+Selected Navigation Button: NEXT
+Transaction Committed
+Any records that the flow was ready to create, update, or delete were committed to the database.
